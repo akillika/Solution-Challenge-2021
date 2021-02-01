@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'main.dart';
 
-class MyApp1 extends StatelessWidget {
+class PostNew extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,34 +28,22 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
   String _versionName = 'V1.0';
-  final splashDelay = 3;
 
-  @override
-  void initState() {
-    super.initState();
 
-    _loadWidget();
-  }
 
-  _loadWidget() async {
-    var _duration = Duration(seconds: splashDelay);
-    return Timer(_duration, navigationPage);
-  }
 
-  void navigationPage() {
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (BuildContext context) => MyApp()));
-  }
+
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.pink,
-        body: Center(
-            child: CircularProgressIndicator(
-          backgroundColor: Colors.white,
-        )));
+
+        body: Center(child: CircularProgressIndicator(backgroundColor: Colors.white,))
+    );
   }
 }
 
