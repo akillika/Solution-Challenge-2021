@@ -39,7 +39,7 @@ class _CategoryState extends State<Category> {
         stream: getCategories(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
-            return CircularProgressIndicator();
+            return Center(child: CircularProgressIndicator());
           } else {
             return GridView.builder(
               gridDelegate:
@@ -48,19 +48,22 @@ class _CategoryState extends State<Category> {
               shrinkWrap: true,
               itemCount: snapshot.data.size,
               itemBuilder: (context, index) {
-                return GridTile(
-                    child: Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: Material(
-                      borderRadius: BorderRadius.circular(20),
-                      elevation: 25,
-                      color: Colors.pink,
-                      child: Container(
-                          height: 100,
-                          width: 100,
-                          child: Center(
-                              child: Text(snapshot.data.docs[index]['name'])))),
-                ));
+                return Container(
+                  color: Colors.white,
+                  child: GridTile(
+                      child: Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: Material(
+                        borderRadius: BorderRadius.circular(20),
+                        // elevation: 25,
+                        color: Colors.pink,
+                        child: Container(
+                            height: 100,
+                            width: 100,
+                            child: Center(
+                                child: Text(snapshot.data.docs[index]['name'])))),
+                  )),
+                );
               },
             );
           }

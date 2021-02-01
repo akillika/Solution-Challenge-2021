@@ -30,55 +30,67 @@ class _PostnewState extends State<Postnew> {
       ),
       backgroundColor: Colors.white,
       drawer: drawer(context),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-            child: GestureDetector(
-              onTap: () {
-                print('Donate');
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => Category()));
-              },
-              child: Material(
-                child: Container(
-                  height: 100,
-                  width: 350,
-                  child: Center(
-                      child: Text(
-                    'Donate',
-                    style: TextStyle(fontSize: 50),
-                  )),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Image.asset(
+              "assets/posts.png",
+            ),
+            Center(
+              child: GestureDetector(
+                onTap: () {
+                  print('Donate');
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) => Category()));
+                },
+                child: Material(
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Container(
+                      height: 30,
+                      // width: 350,
+                      child: Center(
+                          child: Text(
+                        'Donate',
+                        style: TextStyle(fontSize: 20),
+                      )),
+                    ),
+                  ),
+                  elevation: 5,
+                  borderRadius: BorderRadius.circular(100),
                 ),
-                elevation: 15,
-                borderRadius: BorderRadius.circular(10),
               ),
             ),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          Center(
-            child: GestureDetector(
-              onTap: () {
-                print('Request Donation');
-              },
-              child: Material(
-                child: Container(
-                  height: 100,
-                  width: 350,
-                  child: Center(
-                      child: Text(
-                    'Request Donation',
-                    style: TextStyle(fontSize: 40),
-                  )),
+            SizedBox(
+              height: 30,
+            ),
+            Center(
+              child: GestureDetector(
+                onTap: () {
+                  print('Request Donation');
+                },
+                child: Material(
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Container(
+                      height: 30,
+                      // width: 350,
+                      child: Center(
+                          child: Text(
+                        'Request Donation',
+                        style: TextStyle(fontSize: 20),
+                      )),
+                    ),
+                  ),
+                  elevation: 15,
+                  borderRadius: BorderRadius.circular(100),
                 ),
-                elevation: 15,
-                borderRadius: BorderRadius.circular(10),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
