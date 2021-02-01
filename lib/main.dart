@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:solution_challenge_2021/postnew.dart';
+import 'package:solution_challenge_2021/profile.dart';
 import 'package:solution_challenge_2021/splash.dart';
 import 'package:solution_challenge_2021/widgets.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -53,7 +54,12 @@ class _MyHomePageState extends State<MyHomePage> {
             Padding(
               padding: EdgeInsets.only(right: 20.0),
               child: GestureDetector(
-                onTap: () => Scaffold.of(context).openDrawer(),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => ProfilePage()));
+                },
                 child: Icon(
                   Icons.account_circle,
                   size: 26.0,
