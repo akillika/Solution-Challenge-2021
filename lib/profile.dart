@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:solution_challenge_2021/main.dart';
 import 'package:solution_challenge_2021/widgets.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'login.dart';
 
@@ -47,7 +45,7 @@ class _ProfilePageState extends State<ProfilePage> {
               scale: 5,
             ),
             Text(
-              'Akil S',
+              "Akil S",
               style: TextStyle(fontSize: 40),
             ),
             SizedBox(
