@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solution_challenge_2021/category.dart';
 import 'package:solution_challenge_2021/widgets.dart';
 
 class Postnew extends StatefulWidget {
@@ -36,6 +37,8 @@ class _PostnewState extends State<Postnew> {
             child: GestureDetector(
               onTap: () {
                 print('Donate');
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => Category()));
               },
               child: Material(
                 child: Container(

@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:solution_challenge_2021/postnew.dart';
 import 'package:solution_challenge_2021/splash.dart';
 import 'package:solution_challenge_2021/widgets.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
   runApp(MyApp1());
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
 }
 
 class MyApp extends StatefulWidget {
