@@ -61,10 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             GestureDetector(
               onTap: () {
-                setState(() {
-                  // currentIndex = 3;
-                });
-                Navigator.of(context).pop();
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => MyApp()));
               },
               child: Text(
                 'Dashboard',
@@ -161,21 +158,104 @@ class _MyHomePageState extends State<MyHomePage> {
               )),
         ],
       ),
-      body: Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Text(
-              greetings(),
-              style: TextStyle(
-                fontFamily: "Circular Air",
-                fontSize: 17,
-                fontWeight: FontWeight.w600,
-                color: Color(0xff101010),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(
+                greetings(),
+                style: TextStyle(
+                  fontFamily: "Circular Air",
+                  fontSize: 17,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xff101010),
+                ),
               ),
             ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal:20.0),
+              child: Text(
+                "Recent posts:",
+                style: TextStyle(
+                  fontFamily: "Circular Air",
+                  fontSize: 22,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.pink
+                ),
+              ),
+            ),
+            SizedBox(height: 20,),
+            Card(
+              child: ListTile(
+                leading: FlutterLogo(size: 72.0),
+                title: Text('Three-line ListTile'),
+                subtitle: Text(
+                    'A sufficiently long subtitle warrants three lines.'
+                ),
+                trailing: Icon(Icons.more_vert),
+                isThreeLine: true,
+              ),
+            ),
+            Card(
+              child: ListTile(
+                leading: FlutterLogo(size: 72.0),
+                title: Text('Three-line ListTile'),
+                subtitle: Text(
+                    'A sufficiently long subtitle warrants three lines.'
+                ),
+                trailing: Icon(Icons.more_vert),
+                isThreeLine: true,
+              ),
+            ),Card(
+              child: ListTile(
+                leading: FlutterLogo(size: 72.0),
+                title: Text('Three-line ListTile'),
+                subtitle: Text(
+                    'A sufficiently long subtitle warrants three lines.'
+                ),
+                trailing: Icon(Icons.more_vert),
+                isThreeLine: true,
+              ),
+            ),Card(
+              child: ListTile(
+                leading: FlutterLogo(size: 72.0),
+                title: Text('Three-line ListTile'),
+                subtitle: Text(
+                    'A sufficiently long subtitle warrants three lines.'
+                ),
+                trailing: Icon(Icons.more_vert),
+                isThreeLine: true,
+              ),
+            ),
+            Card(
+              child: ListTile(
+                leading: FlutterLogo(size: 72.0),
+                title: Text('Three-line ListTile'),
+                subtitle: Text(
+                    'A sufficiently long subtitle warrants three lines.'
+                ),
+                trailing: Icon(Icons.more_vert),
+                isThreeLine: true,
+              ),
+            ),
+            Card(
+              child: ListTile(
+                leading: FlutterLogo(size: 72.0),
+                title: Text('Three-line ListTile'),
+                subtitle: Text(
+                    'A sufficiently long subtitle warrants three lines.'
+                ),
+                trailing: Icon(Icons.more_vert),
+                isThreeLine: true,
+              ),
+            ),
+
+
+
+
+          ],
+        ),
       ),
     );
   }
