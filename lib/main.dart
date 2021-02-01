@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:solution_challenge_2021/postnew.dart';
 import 'package:solution_challenge_2021/splash.dart';
+import 'package:solution_challenge_2021/widgets.dart';
 
 void main() {
   runApp(MyApp1());
@@ -39,230 +40,129 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: Column(
-          children: <Widget>[
-            SizedBox(
-              height: 30,
-            ),
-            DrawerHeader(
-              child: Container(
-                  height: 142,
-                  width: MediaQuery.of(context).size.width,
-                  child: Image.asset(
-                    "assets/dsclogo.png",
-                  )),
-              decoration: BoxDecoration(
-                color: Colors.white,
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => MyApp()));
-              },
-              child: Text(
-                'Dashboard',
-                style: TextStyle(
-                  fontFamily: 'Avenir',
-                  fontSize: 24,
-                  fontWeight: FontWeight.w700,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            SizedBox(
-              height: 45,
-            ),
-            GestureDetector(
-              onTap: () {},
-              child: Text(
-                'Donate',
-                style: TextStyle(
-                  fontFamily: 'Avenir',
-                  fontSize: 24,
-                  fontWeight: FontWeight.w700,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            SizedBox(
-              height: 45,
-            ),
-            Text(
-              'Ask',
-              style: TextStyle(
-                fontFamily: 'Avenir',
-                fontSize: 24,
-                fontWeight: FontWeight.w700,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(
-              height: 45,
-            ),
-            Text(
-              'About us',
-              style: TextStyle(
-                fontFamily: 'Avenir',
-                fontSize: 24,
-                fontWeight: FontWeight.w700,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(
-              height: 45,
-            ),
-            Expanded(
-                child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                height: 65,
-                width: MediaQuery.of(context).size.width,
-                color: Colors.pink,
-                child: Center(
-                  child: Text(
-                    'v1.0.1',
-                    style: TextStyle(
-                      fontFamily: 'Avenir',
-                      fontSize: 20,
-                      color: const Color(0xffffffff),
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-            ))
-          ],
-        ),
-      ),
-      appBar: AppBar(
-        title: Text("Solution Challenge"),
-        // leading: Icon(
-        //   Icons.menu, // add custom icons also
-        // ),
-        actions: <Widget>[
-          Padding(
+        drawer: drawer(context),
+        appBar: AppBar(
+          title: Text("Solution Challenge"),
+          // leading: Icon(
+          //   Icons.menu, // add custom icons also
+          // ),
+          actions: <Widget>[
+            Padding(
               padding: EdgeInsets.only(right: 20.0),
               child: GestureDetector(
-                onTap: () {},
-                child: GestureDetector(
-                  onTap: () => Scaffold.of(context).openDrawer(),
-                  child: Icon(
-                    Icons.account_circle,
-                    size: 26.0,
-                  ),
+                onTap: () => Scaffold.of(context).openDrawer(),
+                child: Icon(
+                  Icons.account_circle,
+                  size: 26.0,
                 ),
-              )),
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Text(
-                greetings(),
-                style: TextStyle(
-                  fontFamily: "Circular Air",
-                  fontSize: 17,
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xff101010),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Text(
-                "Recent posts:",
-                style: TextStyle(
-                    fontFamily: "Circular Air",
-                    fontSize: 22,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.pink),
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Card(
-              child: ListTile(
-                leading: FlutterLogo(size: 72.0),
-                title: Text('Three-line ListTile'),
-                subtitle:
-                    Text('A sufficiently long subtitle warrants three lines.'),
-                trailing: Icon(Icons.more_vert),
-                isThreeLine: true,
-              ),
-            ),
-            Card(
-              child: ListTile(
-                leading: FlutterLogo(size: 72.0),
-                title: Text('Three-line ListTile'),
-                subtitle:
-                    Text('A sufficiently long subtitle warrants three lines.'),
-                trailing: Icon(Icons.more_vert),
-                isThreeLine: true,
-              ),
-            ),
-            Card(
-              child: ListTile(
-                leading: FlutterLogo(size: 72.0),
-                title: Text('Three-line ListTile'),
-                subtitle:
-                    Text('A sufficiently long subtitle warrants three lines.'),
-                trailing: Icon(Icons.more_vert),
-                isThreeLine: true,
-              ),
-            ),
-            Card(
-              child: ListTile(
-                leading: FlutterLogo(size: 72.0),
-                title: Text('Three-line ListTile'),
-                subtitle:
-                    Text('A sufficiently long subtitle warrants three lines.'),
-                trailing: Icon(Icons.more_vert),
-                isThreeLine: true,
-              ),
-            ),
-            Card(
-              child: ListTile(
-                leading: FlutterLogo(size: 72.0),
-                title: Text('Three-line ListTile'),
-                subtitle:
-                    Text('A sufficiently long subtitle warrants three lines.'),
-                trailing: Icon(Icons.more_vert),
-                isThreeLine: true,
-              ),
-            ),
-            Card(
-              child: ListTile(
-                leading: FlutterLogo(size: 72.0),
-                title: Text('Three-line ListTile'),
-                subtitle:
-                    Text('A sufficiently long subtitle warrants three lines.'),
-                trailing: Icon(Icons.more_vert),
-                isThreeLine: true,
               ),
             ),
           ],
         ),
-      ),
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(
+                  greetings(),
+                  style: TextStyle(
+                    fontFamily: "Circular Air",
+                    fontSize: 17,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xff101010),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Text(
+                  "Recent posts:",
+                  style: TextStyle(
+                      fontFamily: "Circular Air",
+                      fontSize: 22,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.pink),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Card(
+                child: ListTile(
+                  leading: FlutterLogo(size: 72.0),
+                  title: Text('Three-line ListTile'),
+                  subtitle: Text(
+                      'A sufficiently long subtitle warrants three lines.'),
+                  trailing: Icon(Icons.more_vert),
+                  isThreeLine: true,
+                ),
+              ),
+              Card(
+                child: ListTile(
+                  leading: FlutterLogo(size: 72.0),
+                  title: Text('Three-line ListTile'),
+                  subtitle: Text(
+                      'A sufficiently long subtitle warrants three lines.'),
+                  trailing: Icon(Icons.more_vert),
+                  isThreeLine: true,
+                ),
+              ),
+              Card(
+                child: ListTile(
+                  leading: FlutterLogo(size: 72.0),
+                  title: Text('Three-line ListTile'),
+                  subtitle: Text(
+                      'A sufficiently long subtitle warrants three lines.'),
+                  trailing: Icon(Icons.more_vert),
+                  isThreeLine: true,
+                ),
+              ),
+              Card(
+                child: ListTile(
+                  leading: FlutterLogo(size: 72.0),
+                  title: Text('Three-line ListTile'),
+                  subtitle: Text(
+                      'A sufficiently long subtitle warrants three lines.'),
+                  trailing: Icon(Icons.more_vert),
+                  isThreeLine: true,
+                ),
+              ),
+              Card(
+                child: ListTile(
+                  leading: FlutterLogo(size: 72.0),
+                  title: Text('Three-line ListTile'),
+                  subtitle: Text(
+                      'A sufficiently long subtitle warrants three lines.'),
+                  trailing: Icon(Icons.more_vert),
+                  isThreeLine: true,
+                ),
+              ),
+              Card(
+                child: ListTile(
+                  leading: FlutterLogo(size: 72.0),
+                  title: Text('Three-line ListTile'),
+                  subtitle: Text(
+                      'A sufficiently long subtitle warrants three lines.'),
+                  trailing: Icon(Icons.more_vert),
+                  isThreeLine: true,
+                ),
+              ),
+            ],
+          ),
+        ),
         floatingActionButton: new FloatingActionButton(
-          onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => PostNew()));
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => Postnew()));
           },
           tooltip: 'Post',
           child: new Icon(Icons.add),
         ) // This trailing
-    );
-
+        );
   }
 }
 

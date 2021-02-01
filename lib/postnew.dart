@@ -1,60 +1,82 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:solution_challenge_2021/widgets.dart';
 
-import 'main.dart';
-
-class PostNew extends StatelessWidget {
+class Postnew extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Solution Challenge',
-      theme: ThemeData(
-        primarySwatch: Colors.pink,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(title: 'Solution Challenge'),
-    );
-  }
+  _PostnewState createState() => _PostnewState();
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-
-  String _versionName = 'V1.0';
-
-
-
-
-
-
-
+class _PostnewState extends State<Postnew> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('New Post'),
+        centerTitle: true,
         backgroundColor: Colors.pink,
-
-        body: Center(child: CircularProgressIndicator(backgroundColor: Colors.white,))
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(right: 20.0),
+            child: GestureDetector(
+              onTap: () => Scaffold.of(context).openDrawer(),
+              child: Icon(
+                Icons.account_circle,
+                size: 26.0,
+              ),
+            ),
+          ),
+        ],
+      ),
+      backgroundColor: Colors.white,
+      drawer: drawer(context),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+            child: GestureDetector(
+              onTap: () {
+                print('Donate');
+              },
+              child: Material(
+                child: Container(
+                  height: 100,
+                  width: 350,
+                  child: Center(
+                      child: Text(
+                    'Donate',
+                    style: TextStyle(fontSize: 50),
+                  )),
+                ),
+                elevation: 15,
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 30,
+          ),
+          Center(
+            child: GestureDetector(
+              onTap: () {
+                print('Request Donation');
+              },
+              child: Material(
+                child: Container(
+                  height: 100,
+                  width: 350,
+                  child: Center(
+                      child: Text(
+                    'Request Donation',
+                    style: TextStyle(fontSize: 40),
+                  )),
+                ),
+                elevation: 15,
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
-  }
-}
-
-String greetings() {
-  var now;
-  now = DateTime.now().hour;
-  if (now < 12) {
-    return 'Good morning, ';
-  } else if (now < 17) {
-    return 'Good afternoon,';
-  } else {
-    return 'Good evening,';
   }
 }
