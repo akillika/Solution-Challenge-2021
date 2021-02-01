@@ -61,7 +61,11 @@ class _CategoryState extends State<Category> {
                             height: 100,
                             width: 100,
                             child: Center(
-                                child: Text(snapshot.data.docs[index]['name'])))),
+                                child: Text(
+                              snapshot.data.docs[index]['name'],
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
+                            )))),
                   )),
                 );
               },
