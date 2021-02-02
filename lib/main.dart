@@ -46,13 +46,13 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: drawer(context),
+        drawer: CustomDrawer(),
         appBar: AppBar(
           title: Text("Solution Challenge"),
           // leading: Icon(
           //   Icons.menu, // add custom icons also
           // ),
-          actions: <Widget>[account(context)],
+          actions: <Widget>[AccountButton()],
         ),
         body: SingleChildScrollView(
           child: Column(

@@ -16,10 +16,10 @@ class _PostnewState extends State<Postnew> {
         title: Text('New Post'),
         centerTitle: true,
         backgroundColor: Colors.pink,
-        actions: [account(context)],
+        actions: [AccountButton()],
       ),
       backgroundColor: Colors.white,
-      drawer: drawer(context),
+      drawer: CustomDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(

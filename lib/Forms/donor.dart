@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:solution_challenge_2021/profile.dart';
+import 'package:solution_challenge_2021/widgets.dart';
 
 class DonorDetails extends StatefulWidget {
   @override
@@ -13,23 +14,7 @@ class _DonorDetailsState extends State<DonorDetails> {
       appBar: AppBar(
         title: Text("Donor Details"),
         centerTitle: true,
-        actions: [
-          Padding(
-            padding: EdgeInsets.only(right: 20.0),
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => ProfilePage()));
-              },
-              child: Icon(
-                Icons.account_circle,
-                size: 26.0,
-              ),
-            ),
-          ),
-        ],
+        actions: [AccountButton()],
       ),
     );
   }

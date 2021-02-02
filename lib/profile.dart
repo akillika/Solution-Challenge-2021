@@ -14,11 +14,11 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: drawer(context),
+        drawer: CustomDrawer(),
         appBar: AppBar(
           title: Text('Profile'),
           centerTitle: true,
-          actions: [account(context)],
+          actions: [AccountButton()],
         ),
         backgroundColor: Colors.white,
         body: Center(

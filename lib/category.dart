@@ -24,7 +24,7 @@ class _CategoryState extends State<Category> {
     }
 
     return Scaffold(
-      drawer: drawer(context),
+      drawer: CustomDrawer(),
       appBar: AppBar(
         title: Text('Categories'),
         centerTitle: true,
