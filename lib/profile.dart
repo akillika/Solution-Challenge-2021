@@ -37,11 +37,16 @@ class _ProfilePageState extends State<ProfilePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(
-              height: 15,
+              height: 45,
             ),
-            Image.asset(
-              'assets/profile.png',
-              scale: 5,
+            CircleAvatar(
+              radius: 70.0,
+              backgroundImage:
+              NetworkImage(imageUrl),
+              backgroundColor: Colors.transparent,
+            ),
+            SizedBox(
+              height: 30,
             ),
             Text(
               name,

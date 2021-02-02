@@ -28,7 +28,7 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.pink,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Solution Challenge'),
+      home: LoginPage(),
     );
   }
 }
