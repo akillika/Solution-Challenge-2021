@@ -5,8 +5,10 @@ import 'package:solution_challenge_2021/splash.dart';
 import 'package:solution_challenge_2021/widgets.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+import 'login.dart';
+
 void main() async {
-  runApp(MyApp1());
+  runApp(MyApp());
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 }

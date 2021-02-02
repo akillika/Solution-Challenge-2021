@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:solution_challenge_2021/login.dart';
 import 'package:solution_challenge_2021/main.dart';
+import 'package:solution_challenge_2021/signin.dart';
 
 drawer(BuildContext context) {
   return Drawer(
@@ -75,6 +77,32 @@ drawer(BuildContext context) {
             fontWeight: FontWeight.w700,
           ),
           textAlign: TextAlign.center,
+        ),
+        SizedBox(
+          height: 45,
+        ),
+        GestureDetector(
+          onTap: () {
+            signOutGoogle().then((result) {
+
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return LoginPage();
+                  },
+                ),
+              );
+            });
+          },
+          child: Text(
+            'Logout',
+            style: TextStyle(
+              fontFamily: 'Avenir',
+              fontSize: 24,
+              fontWeight: FontWeight.w700,
+            ),
+            textAlign: TextAlign.center,
+          ),
         ),
         SizedBox(
           height: 45,

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:solution_challenge_2021/signin.dart';
 import 'package:solution_challenge_2021/widgets.dart';
 
 import 'login.dart';
@@ -10,8 +11,6 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +44,7 @@ class _ProfilePageState extends State<ProfilePage> {
               scale: 5,
             ),
             Text(
-              "Akil S",
+              name,
               style: TextStyle(fontSize: 40),
             ),
             SizedBox(
@@ -59,7 +58,7 @@ class _ProfilePageState extends State<ProfilePage> {
               height: 10,
             ),
             Text(
-              'akillika49@gmail.com',
+              email,
               style: TextStyle(fontSize: 25),
             ),
             SizedBox(
@@ -70,13 +69,15 @@ class _ProfilePageState extends State<ProfilePage> {
               child: Center(
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.of(context)
-                        .pushAndRemoveUntil(
-                      CupertinoPageRoute(
-                          builder: (context) => LoginPage()
-                      ),
-                          (_) => false,
-                    );
+                    signOutGoogle().then((result) {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return LoginPage();
+                          },
+                        ),
+                      );
+                    });
                   },
                   child: Material(
                     color: Colors.red,
@@ -88,9 +89,9 @@ class _ProfilePageState extends State<ProfilePage> {
                         // width: 350,
                         child: Center(
                             child: Text(
-                              'Logout',
-                              style: TextStyle(fontSize: 20,color: Colors.white),
-                            )),
+                          'Logout',
+                          style: TextStyle(fontSize: 20, color: Colors.white),
+                        )),
                       ),
                     ),
                     elevation: 5,

@@ -1,6 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:solution_challenge_2021/splash.dart';
+import 'package:solution_challenge_2021/signin.dart';
 
 import 'main.dart';
 
@@ -13,6 +12,11 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Login'),
+        centerTitle: true,
+      ),
+      backgroundColor: Colors.white,
       body: Container(
         color: Colors.white,
         child: Center(
@@ -20,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              FlutterLogo(size: 150),
+              Image.asset('assets/logim.png'),
               SizedBox(height: 50),
               _signInButton(),
             ],
@@ -33,11 +37,19 @@ class _LoginPageState extends State<LoginPage> {
   Widget _signInButton() {
     return OutlineButton(
       splashColor: Colors.grey,
-      onPressed: ()  {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (BuildContext context) => MyApp1()));
+      onPressed: () {
+        signInWithGoogle().then((result) {
+          print(name);
+          if (result != null) {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) {
+                  return MyApp();
+                },
+              ),
+            );
+          }
+        });
       },
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
       highlightElevation: 0,
