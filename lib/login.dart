@@ -41,12 +41,12 @@ class _LoginPageState extends State<LoginPage> {
         signInWithGoogle().then((result) {
           print(name);
           if (result != null) {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) {
-                  return MyHomePage();
-                },
+            Navigator.pushAndRemoveUntil<dynamic>(
+              context,
+              MaterialPageRoute<dynamic>(
+                builder: (BuildContext context) => MyHomePage(),
               ),
+                  (route) => false,
             );
           }
         });

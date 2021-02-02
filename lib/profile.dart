@@ -41,8 +41,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             CircleAvatar(
               radius: 70.0,
-              backgroundImage:
-              NetworkImage(imageUrl),
+              backgroundImage: NetworkImage(imageUrl),
               backgroundColor: Colors.transparent,
             ),
             SizedBox(
@@ -75,12 +74,12 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: GestureDetector(
                   onTap: () {
                     signOutGoogle().then((result) {
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return LoginPage();
-                          },
+                      Navigator.pushAndRemoveUntil<dynamic>(
+                        context,
+                        MaterialPageRoute<dynamic>(
+                          builder: (BuildContext context) => LoginPage(),
                         ),
+                        (route) => false,
                       );
                     });
                   },
