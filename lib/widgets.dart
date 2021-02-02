@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:solution_challenge_2021/login.dart';
 import 'package:solution_challenge_2021/main.dart';
+import 'package:solution_challenge_2021/profile.dart';
 import 'package:solution_challenge_2021/signin.dart';
 
 drawer(BuildContext context) {
@@ -127,6 +128,24 @@ drawer(BuildContext context) {
           ),
         ))
       ],
+    ),
+  );
+}
+
+account(BuildContext context) {
+  return Padding(
+    padding: EdgeInsets.only(right: 20.0),
+    child: GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (BuildContext context) => ProfilePage()));
+      },
+      child: Icon(
+        Icons.account_circle,
+        size: 26.0,
+      ),
     ),
   );
 }

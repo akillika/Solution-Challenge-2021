@@ -18,18 +18,7 @@ class _ProfilePageState extends State<ProfilePage> {
         appBar: AppBar(
           title: Text('Profile'),
           centerTitle: true,
-          actions: [
-            Padding(
-              padding: EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
-                onTap: () => Scaffold.of(context).openDrawer(),
-                child: Icon(
-                  Icons.account_circle,
-                  size: 26.0,
-                ),
-              ),
-            ),
-          ],
+          actions: [account(context)],
         ),
         backgroundColor: Colors.white,
         body: Center(

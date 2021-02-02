@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solution_challenge_2021/Forms/donor.dart';
 import 'package:solution_challenge_2021/profile.dart';
 import 'package:solution_challenge_2021/widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -17,6 +18,11 @@ class _CategoryState extends State<Category> {
 
   @override
   Widget build(BuildContext context) {
+    navigate() {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => DonorDetails()));
+    }
+
     return Scaffold(
       drawer: drawer(context),
       appBar: AppBar(
@@ -59,19 +65,22 @@ class _CategoryState extends State<Category> {
                   child: GridTile(
                       child: Padding(
                     padding: EdgeInsets.all(10.0),
-                    child: Material(
-                        borderRadius: BorderRadius.circular(20),
-                        // elevation: 25,
-                        color: Colors.pink,
-                        child: Container(
-                            height: 100,
-                            width: 100,
-                            child: Center(
-                                child: Text(
-                              snapshot.data.docs[index]['name'],
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 20),
-                            )))),
+                    child: GestureDetector(
+                      onTap: navigate(),
+                      child: Material(
+                          borderRadius: BorderRadius.circular(20),
+                          // elevation: 25,
+                          color: Colors.pink,
+                          child: Container(
+                              height: 100,
+                              width: 100,
+                              child: Center(
+                                  child: Text(
+                                snapshot.data.docs[index]['name'],
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 20),
+                              )))),
+                    ),
                   )),
                 );
               },

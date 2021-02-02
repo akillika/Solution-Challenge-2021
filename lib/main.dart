@@ -52,23 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // leading: Icon(
           //   Icons.menu, // add custom icons also
           // ),
-          actions: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => ProfilePage()));
-                },
-                child: Icon(
-                  Icons.account_circle,
-                  size: 26.0,
-                ),
-              ),
-            ),
-          ],
+          actions: <Widget>[account(context)],
         ),
         body: SingleChildScrollView(
           child: Column(

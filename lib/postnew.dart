@@ -16,23 +16,7 @@ class _PostnewState extends State<Postnew> {
         title: Text('New Post'),
         centerTitle: true,
         backgroundColor: Colors.pink,
-        actions: [
-          Padding(
-            padding: EdgeInsets.only(right: 20.0),
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => ProfilePage()));
-              },
-              child: Icon(
-                Icons.account_circle,
-                size: 26.0,
-              ),
-            ),
-          ),
-        ],
+        actions: [account(context)],
       ),
       backgroundColor: Colors.white,
       drawer: drawer(context),
@@ -48,8 +32,8 @@ class _PostnewState extends State<Postnew> {
               child: GestureDetector(
                 onTap: () {
                   print('Donate');
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => Category()));
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => Category()));
                 },
                 child: Material(
                   child: Padding(
