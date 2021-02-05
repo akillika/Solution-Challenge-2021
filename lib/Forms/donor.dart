@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:solution_challenge_2021/profile.dart';
 import 'package:solution_challenge_2021/widgets.dart';
 
 class DonorDetails extends StatefulWidget {
@@ -16,6 +15,8 @@ class _DonorDetailsState extends State<DonorDetails> {
         centerTitle: true,
         actions: [AccountButton()],
       ),
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(),
     );
   }
 }

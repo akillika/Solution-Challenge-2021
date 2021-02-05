@@ -18,11 +18,6 @@ class _CategoryState extends State<Category> {
 
   @override
   Widget build(BuildContext context) {
-    navigate() {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => DonorDetails()));
-    }
-
     return Scaffold(
       drawer: CustomDrawer(),
       appBar: AppBar(
@@ -66,14 +61,19 @@ class _CategoryState extends State<Category> {
                       child: Padding(
                     padding: EdgeInsets.all(10.0),
                     child: GestureDetector(
-                      onTap: navigate(),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DonorDetails()));
+                      },
                       child: Material(
                           borderRadius: BorderRadius.circular(20),
                           // elevation: 25,
                           color: Colors.pink,
                           child: Container(
-                              height: 100,
-                              width: 100,
+                              height: 50,
+                              width: 50,
                               child: Center(
                                   child: Text(
                                 snapshot.data.docs[index]['name'],
