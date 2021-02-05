@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mobile_number/mobile_number.dart';
-// import 'package:mobile_number/sim_card.dart';
 import 'package:solution_challenge_2021/signin.dart';
 import 'package:solution_challenge_2021/widgets.dart';
 import 'login.dart';
@@ -15,7 +14,6 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  // List<SimCard> _simCard = <SimCard>[];
   @override
   void initState() {
     super.initState();
@@ -38,7 +36,6 @@ class _ProfilePageState extends State<ProfilePage> {
     String mobileNumber = '';
     try {
       mobileNumber = await MobileNumber.mobileNumber;
-      // _simCard = await MobileNumber.getSimCards;
       _mobileNumber = mobileNumber;
     } on PlatformException catch (e) {
       debugPrint("Failed to get mobile number because of '${e.message}'");

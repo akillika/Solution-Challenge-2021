@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solution_challenge_2021/posted.dart';
 import 'package:solution_challenge_2021/widgets.dart';
 
 class ReviewDetails extends StatefulWidget {
@@ -59,6 +60,17 @@ class _ReviewDetailsState extends State<ReviewDetails> {
                 );
               },
             ),
+            RaisedButton(
+              child: Text(
+                'Next',
+                style: TextStyle(color: Colors.white),
+              ),
+              color: Colors.pink,
+              onPressed: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Posted()));
+              },
+            )
           ],
         ),
       ),
