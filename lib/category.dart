@@ -65,7 +65,11 @@ class _CategoryState extends State<Category> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => DonorDetails()));
+                                builder: (context) => DonorDetails(
+                                      category: snapshot
+                                          .data.docs[index]['name']
+                                          .toString(),
+                                    )));
                       },
                       child: Material(
                           borderRadius: BorderRadius.circular(20),
