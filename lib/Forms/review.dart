@@ -46,7 +46,6 @@ class _ReviewDetailsState extends State<ReviewDetails> {
             ),
             Text('Donor Contact Number : ${widget.phno}'),
             Text('Items :'),
-            itemlist(context, widget.items, widget.desc, widget.expiry),
             ListView.builder(
               shrinkWrap: true,
               itemCount: widget.items.length,
@@ -60,37 +59,13 @@ class _ReviewDetailsState extends State<ReviewDetails> {
                 );
               },
             ),
-            RaisedButton(
-              child: Text(
-                'Next',
-                style: TextStyle(color: Colors.white),
-              ),
-              color: Colors.pink,
-              onPressed: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Posted()));
-              },
+            NextButton(
+              func: () => Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Posted())),
             )
           ],
         ),
       ),
     );
   }
-}
-
-Widget itemlist(BuildContext context, List<String> items, List<String> desc,
-    List<String> exp) {
-  return ListView.builder(
-    shrinkWrap: true,
-    itemCount: items.length,
-    itemBuilder: (context, index) {
-      return Column(
-        children: [
-          Text('Item $index : ${items[index]}'),
-          Text('Description $index : ${desc[index]}'),
-          Text('Expiry $index : ${exp[index]}')
-        ],
-      );
-    },
-  );
 }

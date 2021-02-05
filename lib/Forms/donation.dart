@@ -83,27 +83,20 @@ class _DonationDetailsState extends State<DonationDetails> {
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
-                RaisedButton(
-                  child: Text(
-                    'Next',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  color: Colors.pink,
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => LocationDetails(
-                                  category: widget.category,
-                                  donorAddress: widget.donorAddress,
-                                  donorName: widget.donorName,
-                                  phno: widget.phno,
-                                  desc: _desc,
-                                  items: _items,
-                                  expiry: _expiry,
-                                )));
-                  },
-                )
+                NextButton(
+                  func: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => LocationDetails(
+                                category: widget.category,
+                                donorAddress: widget.donorAddress,
+                                donorName: widget.donorName,
+                                phno: widget.phno,
+                                desc: _desc,
+                                items: _items,
+                                expiry: _expiry,
+                              ))),
+                ),
               ],
             ),
           ),

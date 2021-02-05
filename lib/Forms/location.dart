@@ -37,27 +37,20 @@ class _LocationDetailsState extends State<LocationDetails> {
       drawer: CustomDrawer(),
       body: Column(
         children: [
-          RaisedButton(
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => ReviewDetails(
-                            category: widget.category,
-                            donorAddress: widget.donorAddress,
-                            donorName: widget.donorName,
-                            phno: widget.phno,
-                            desc: widget.desc,
-                            items: widget.items,
-                            expiry: widget.expiry,
-                          )));
-            },
-            color: Colors.pink,
-            child: Text(
-              'Next',
-              style: TextStyle(color: Colors.white),
-            ),
-          )
+          NextButton(
+            func: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ReviewDetails(
+                          category: widget.category,
+                          donorAddress: widget.donorAddress,
+                          donorName: widget.donorName,
+                          phno: widget.phno,
+                          desc: widget.desc,
+                          items: widget.items,
+                          expiry: widget.expiry,
+                        ))),
+          ),
         ],
       ),
     );
