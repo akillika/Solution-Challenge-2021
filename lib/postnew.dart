@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:solution_challenge_2021/category.dart';
-import 'package:solution_challenge_2021/profile.dart';
 import 'package:solution_challenge_2021/widgets.dart';
 
 class Postnew extends StatefulWidget {

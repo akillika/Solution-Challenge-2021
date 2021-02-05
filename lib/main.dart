@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:solution_challenge_2021/postnew.dart';
-import 'package:solution_challenge_2021/profile.dart';
-import 'package:solution_challenge_2021/splash.dart';
 import 'package:solution_challenge_2021/widgets.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'login.dart';
-import 'package:mobile_number/mobile_number.dart';
 
 void main() async {
   runApp(MyApp());
@@ -44,8 +40,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

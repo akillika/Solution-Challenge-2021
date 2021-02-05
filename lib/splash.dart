@@ -28,7 +28,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String _versionName = 'V1.0';
   final splashDelay = 3;
 
   @override
