@@ -1,9 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:mobile_number/mobile_number.dart';
+import 'package:mobile_number/sim_card.dart';
 import 'package:solution_challenge_2021/signin.dart';
 import 'package:solution_challenge_2021/widgets.dart';
-
 import 'login.dart';
+
+String _mobileNumber = '';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -11,6 +15,43 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+
+  String _phno;
+  List<SimCard> _simCard = <SimCard>[];
+  @override
+  void initState() {
+    super.initState();
+    MobileNumber.listenPhonePermission((isPermissionGranted) {
+      if (isPermissionGranted) {
+        initMobileNumberState();
+      } else {
+        initMobileNumberState();
+      }
+    });
+
+    initMobileNumberState();
+  }
+
+  Future<void> initMobileNumberState() async {
+    if (!await MobileNumber.hasPhonePermission) {
+      await MobileNumber.requestPhonePermission;
+      return;
+    }
+    String mobileNumber = '';
+    try {
+      mobileNumber = await MobileNumber.mobileNumber;
+      _simCard = await MobileNumber.getSimCards;
+      _mobileNumber = mobileNumber;
+    } on PlatformException catch (e) {
+      debugPrint("Failed to get mobile number because of '${e.message}'");
+    }
+    if (!mounted) return;
+
+    setState(() {
+      _mobileNumber = mobileNumber.substring(2);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +85,7 @@ class _ProfilePageState extends State<ProfilePage> {
               height: 10,
             ),
             Text(
-              '7904748133',
+              _mobileNumber,
               style: TextStyle(fontSize: 25),
             ),
             SizedBox(

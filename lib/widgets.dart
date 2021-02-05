@@ -32,7 +32,7 @@ class CustomDrawer extends StatelessWidget {
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                      builder: (BuildContext context) => MyApp()));
+                      builder: (BuildContext context) => MyHomePage()));
             },
             child: Text(
               'Dashboard',
