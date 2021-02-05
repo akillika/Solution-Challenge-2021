@@ -59,25 +59,17 @@ class _DonorDetailsState extends State<DonorDetails> {
               SizedBox(
                 height: 20,
               ),
-              RaisedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => DonationDetails(
-                                category: widget.category,
-                                donorAddress: address,
-                                donorName: name,
-                                phno: mobile,
-                              )));
-                },
-                shape: StadiumBorder(),
-                color: Colors.pink,
-                child: Text(
-                  'Next',
-                  style: TextStyle(color: Colors.white),
-                ),
-              )
+              NextButton(
+                func: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => DonationDetails(
+                              category: widget.category,
+                              donorAddress: address,
+                              donorName: name,
+                              phno: mobile,
+                            ))),
+              ),
             ],
           ),
         ),

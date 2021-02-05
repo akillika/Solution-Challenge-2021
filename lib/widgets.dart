@@ -157,3 +157,22 @@ class AccountButton extends StatelessWidget {
     );
   }
 }
+
+class NextButton extends StatelessWidget {
+  final Function func;
+
+  const NextButton({Key key, this.func}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return RaisedButton(
+      onPressed: func,
+      shape: StadiumBorder(),
+      color: Colors.pink,
+      child: Text(
+        'Next',
+        style: TextStyle(color: Colors.white),
+      ),
+    );
+  }
+}
