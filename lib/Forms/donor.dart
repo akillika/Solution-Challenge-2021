@@ -54,7 +54,9 @@ class _DonorDetailsState extends State<DonorDetails> {
                 },
                 maxLength: 10,
                 keyboardType: TextInputType.phone,
-                decoration: InputDecoration(hintText: 'Mobile Number'),
+                decoration: InputDecoration(
+                    hintText:
+                        'Mobile Number (Ignore to save number automatically)'),
               ),
               SizedBox(
                 height: 20,

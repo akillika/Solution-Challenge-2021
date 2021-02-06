@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solution_challenge_2021/category.dart';
 import 'package:solution_challenge_2021/login.dart';
 import 'package:solution_challenge_2021/main.dart';
 import 'package:solution_challenge_2021/profile.dart';
@@ -48,7 +49,12 @@ class CustomDrawer extends StatelessWidget {
             height: 45,
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => Category()));
+            },
             child: Text(
               'Donate',
               style: TextStyle(
@@ -168,7 +174,7 @@ class NextButton extends StatelessWidget {
     return RaisedButton(
       onPressed: func,
       shape: StadiumBorder(),
-      color: Colors.pink,
+      color: Colors.green,
       child: Text(
         'Next',
         style: TextStyle(color: Colors.white),

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:solution_challenge_2021/Forms/location.dart';
 import 'package:solution_challenge_2021/widgets.dart';
@@ -49,6 +50,9 @@ class _DonationDetailsState extends State<DonationDetails> {
                     itemBuilder: (context, index) {
                       return Column(
                         children: [
+                          SizedBox(
+                            height: 15,
+                          ),
                           TextField(
                             onChanged: (_item) {},
                             decoration: InputDecoration(hintText: 'Item'),
@@ -68,35 +72,47 @@ class _DonationDetailsState extends State<DonationDetails> {
                             ),
                             maxLines: 1,
                           ),
+                          const Divider(
+                            color: Colors.pink,
+                            height: 50,
+                            thickness: 5,
+                            // indent: 20,
+                            // endIndent: 0,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              RaisedButton(
+                                color: Colors.pink,
+                                onPressed: () {
+                                  setState(() {
+                                    count = count + 1;
+                                  });
+                                },
+                                child: Text(
+                                  '+  Add another',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                              NextButton(
+                                func: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => LocationDetails(
+                                              category: widget.category,
+                                              donorAddress: widget.donorAddress,
+                                              donorName: widget.donorName,
+                                              phno: widget.phno,
+                                              desc: _desc,
+                                              items: _items,
+                                              expiry: _expiry,
+                                            ))),
+                              ),
+                            ],
+                          )
                         ],
                       );
                     }),
-                RaisedButton(
-                  color: Colors.pink,
-                  onPressed: () {
-                    setState(() {
-                      count = count + 1;
-                    });
-                  },
-                  child: Text(
-                    '+',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-                NextButton(
-                  func: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => LocationDetails(
-                                category: widget.category,
-                                donorAddress: widget.donorAddress,
-                                donorName: widget.donorName,
-                                phno: widget.phno,
-                                desc: _desc,
-                                items: _items,
-                                expiry: _expiry,
-                              ))),
-                ),
               ],
             ),
           ),
