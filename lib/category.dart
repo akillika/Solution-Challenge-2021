@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:solution_challenge_2021/Forms/donor.dart';
 import 'package:solution_challenge_2021/profile.dart';
+import 'package:solution_challenge_2021/requestDonation.dart';
 import 'package:solution_challenge_2021/widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Category extends StatefulWidget {
+  final String type;
+
+  const Category({Key key, this.type}) : super(key: key);
   @override
   _CategoryState createState() => _CategoryState();
 }
@@ -62,14 +66,23 @@ class _CategoryState extends State<Category> {
                     padding: EdgeInsets.all(10.0),
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => DonorDetails(
-                                      category: snapshot
-                                          .data.docs[index]['name']
-                                          .toString(),
-                                    )));
+                        widget.type == 'Donate'
+                            ? Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DonorDetails(
+                                          category: snapshot
+                                              .data.docs[index]['name']
+                                              .toString(),
+                                        )))
+                            : Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => RequestDonation(
+                                          category: snapshot
+                                              .data.docs[index]['name']
+                                              .toString(),
+                                        )));
                       },
                       child: Material(
                           borderRadius: BorderRadius.circular(20),

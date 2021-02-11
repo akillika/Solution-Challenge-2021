@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:solution_challenge_2021/posted.dart';
 import 'package:solution_challenge_2021/widgets.dart';
 
@@ -26,6 +28,8 @@ class ReviewDetails extends StatefulWidget {
 }
 
 class _ReviewDetailsState extends State<ReviewDetails> {
+  final CollectionReference donation =
+      FirebaseFirestore.instance.collection('donation');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,9 +63,30 @@ class _ReviewDetailsState extends State<ReviewDetails> {
                 );
               },
             ),
-            NextButton(
-              func: () => Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Posted())),
+            RaisedButton(
+              shape: StadiumBorder(),
+              color: Colors.green,
+              child: Text(
+                'Post',
+                style: TextStyle(color: Colors.white),
+              ),
+              onPressed: () {
+                try {
+                  donation.add({
+                    "type": widget.category,
+                    "donorName": widget.donorName,
+                    "donorAddress": widget.donorAddress,
+                    "donorNumber": widget.phno,
+                    "items": widget.items,
+                    "desc": widget.desc,
+                    "expiry": widget.expiry
+                  });
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Posted()));
+                } catch (error) {
+                  Fluttertoast.showToast(msg: error);
+                }
+              },
             )
           ],
         ),

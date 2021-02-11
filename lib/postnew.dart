@@ -31,8 +31,10 @@ class _PostnewState extends State<Postnew> {
               child: GestureDetector(
                 onTap: () {
                   print('Donate');
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => Category()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => Category(
+                            type: 'Donate',
+                          )));
                 },
                 child: Material(
                   child: Padding(
@@ -59,6 +61,10 @@ class _PostnewState extends State<Postnew> {
               child: GestureDetector(
                 onTap: () {
                   print('Request Donation');
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => Category(
+                            type: 'Request Donation',
+                          )));
                 },
                 child: Material(
                   child: Padding(

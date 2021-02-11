@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:solution_challenge_2021/Forms/donation.dart';
 import 'package:solution_challenge_2021/widgets.dart';
 
@@ -61,17 +64,25 @@ class _DonorDetailsState extends State<DonorDetails> {
               SizedBox(
                 height: 20,
               ),
-              NextButton(
-                func: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => DonationDetails(
-                              category: widget.category,
-                              donorAddress: address,
-                              donorName: name,
-                              phno: mobile,
-                            ))),
-              ),
+              NextButton(func: () {
+                try {
+                  assert(name != null && name.trim() != "");
+                  assert(address != null && address.trim() != "");
+                  assert(mobile != null && mobile.trim() != "");
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => DonationDetails(
+                                category: widget.category,
+                                donorAddress: address,
+                                donorName: name,
+                                phno: mobile,
+                              )));
+                } on AssertionError {
+                  Fluttertoast.showToast(
+                      msg: 'None of the Fields can be Empty');
+                }
+              }),
             ],
           ),
         ),
