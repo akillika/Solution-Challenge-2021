@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:solution_challenge_2021/postnew.dart';
 import 'package:solution_challenge_2021/widgets.dart';
@@ -42,119 +43,188 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        drawer: CustomDrawer(),
-        appBar: AppBar(
-          title: Text("Solution Challenge"),
-          // leading: Icon(
-          //   Icons.menu, // add custom icons also
-          // ),
-          actions: <Widget>[AccountButton()],
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Text(
-                  greetings(),
-                  style: TextStyle(
-                    fontFamily: "Circular Air",
-                    fontSize: 17,
-                    fontWeight: FontWeight.w600,
-                    color: Color(0xff101010),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: DefaultTabController(
+        length: 2,
+        child: Scaffold(
+            drawer: CustomDrawer(),
+            appBar: AppBar(
+              title: Text('Easy Donate'),
+              centerTitle: true,
+              backgroundColor: Colors.pink,
+              actions: [AccountButton()],
+              bottom: TabBar(
+                tabs: [
+                  Tab(
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text("Donations"),
+                    ),
+                  ),
+                  Tab(
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text("Requests"),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            body: TabBarView(
+              children: [
+                SingleChildScrollView(
+                  child: Container(
+                    padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                    width: double.maxFinite,
+                    child: new Card(
+                      elevation: 3,
+                      child: new Container(
+                        padding: new EdgeInsets.all(10.0),
+                        child: new Column(
+                          // mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                new Text(
+                                  ' Masks',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.pink),
+                                ),
+                                Text('4h ago'),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              children: [
+                                Icon(Icons.location_on_outlined),
+                                Text(
+                                  'Bengaluru',
+                                  style: TextStyle(fontWeight: FontWeight.w500),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            new Text(
+                                'I am ready to share masks to share it in our schools and colleges to prevent corona spread.'),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Expires in 4 days',
+                                  style: TextStyle(
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                Text(
+                                  '500 pcs',
+                                  style: TextStyle(
+                                      color: Colors.green,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Text(
-                  "Recent posts: ",
-                  style: TextStyle(
-                      fontFamily: "Circular Air",
-                      fontSize: 22,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.pink),
+                SingleChildScrollView(
+                  child: Container(
+                    padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                    width: double.maxFinite,
+                    child: new Card(
+                      elevation: 3,
+                      child: new Container(
+                        padding: new EdgeInsets.all(10.0),
+                        child: new Column(
+                          // mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                new Text(
+                                  ' Candles',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.pink),
+                                ),
+                                Text('4h ago'),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              children: [
+                                Icon(Icons.location_on_outlined),
+                                Text(
+                                  'Thanjavur',
+                                  style: TextStyle(fontWeight: FontWeight.w500),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            new Text(
+                                'I am ready to share masks to share it in our schools and colleges to prevent corona spread.'),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Need within 4 days',
+                                  style: TextStyle(
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                Text(
+                                  '100 pcs',
+                                  style: TextStyle(
+                                      color: Colors.green,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Card(
-                child: ListTile(
-                  leading: FlutterLogo(size: 72.0),
-                  title: Text('Three-line ListTile'),
-                  subtitle: Text(
-                      'A sufficiently long subtitle warrants three lines.'),
-                  trailing: Icon(Icons.more_vert),
-                  isThreeLine: true,
-                ),
-              ),
-              Card(
-                child: ListTile(
-                  leading: FlutterLogo(size: 72.0),
-                  title: Text('Three-line ListTile'),
-                  subtitle: Text(
-                      'A sufficiently long subtitle warrants three lines.'),
-                  trailing: Icon(Icons.more_vert),
-                  isThreeLine: true,
-                ),
-              ),
-              Card(
-                child: ListTile(
-                  leading: FlutterLogo(size: 72.0),
-                  title: Text('Three-line ListTile'),
-                  subtitle: Text(
-                      'A sufficiently long subtitle warrants three lines.'),
-                  trailing: Icon(Icons.more_vert),
-                  isThreeLine: true,
-                ),
-              ),
-              Card(
-                child: ListTile(
-                  leading: FlutterLogo(size: 72.0),
-                  title: Text('Three-line ListTile'),
-                  subtitle: Text(
-                      'A sufficiently long subtitle warrants three lines.'),
-                  trailing: Icon(Icons.more_vert),
-                  isThreeLine: true,
-                ),
-              ),
-              Card(
-                child: ListTile(
-                  leading: FlutterLogo(size: 72.0),
-                  title: Text('Three-line ListTile'),
-                  subtitle: Text(
-                      'A sufficiently long subtitle warrants three lines.'),
-                  trailing: Icon(Icons.more_vert),
-                  isThreeLine: true,
-                ),
-              ),
-              Card(
-                child: ListTile(
-                  leading: FlutterLogo(size: 72.0),
-                  title: Text('Three-line ListTile'),
-                  subtitle: Text(
-                      'A sufficiently long subtitle warrants three lines.'),
-                  trailing: Icon(Icons.more_vert),
-                  isThreeLine: true,
-                ),
-              ),
-            ],
-          ),
-        ),
-        floatingActionButton: new FloatingActionButton(
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => Postnew()));
-          },
-          tooltip: 'Post',
-          child: new Icon(Icons.add),
-        ) // This trailing
-        );
+              ],
+            ),
+            floatingActionButton: new FloatingActionButton(
+              backgroundColor: Colors.pink,
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => Postnew()));
+              },
+              tooltip: 'Post',
+              child: new Icon(Icons.add),
+            ) // This trailing
+            ),
+      ),
+    );
   }
 }
 
