@@ -1,6 +1,5 @@
-# solution_challenge_2021
-
-A new Flutter project.
+# Easy Donation App
+Flutter App to donate and request products for social good.
 
 ## Getting Started
 
