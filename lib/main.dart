@@ -1,9 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:solution_challenge_2021/postnew.dart';
 import 'package:solution_challenge_2021/widgets.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'login.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() async {
   runApp(MyApp());
@@ -74,72 +77,111 @@ class _MyHomePageState extends State<MyHomePage> {
             body: TabBarView(
               children: [
                 SingleChildScrollView(
-                  child: Container(
-                    padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                    width: double.maxFinite,
-                    child: new Card(
-                      elevation: 3,
-                      child: new Container(
-                        padding: new EdgeInsets.all(10.0),
-                        child: new Column(
-                          // mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                new Text(
-                                  ' Masks',
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.pink),
+                  child: StreamBuilder(
+                      stream: getDonations(),
+                      builder: (context, snapshot) {
+                        return ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: snapshot.data.size,
+                            itemBuilder: (context, index) {
+                              return GestureDetector(
+                                onTap: () async {
+                                  var url =
+                                      'tel:+91${snapshot.data.docs[index]['donorNumber']}';
+                                  if (await canLaunch(url)) {
+                                    await launch(url);
+                                  } else {
+                                    Fluttertoast.showToast(
+                                        msg: 'Try Again Later!!');
+                                  }
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                                  width: double.maxFinite,
+                                  child: new Card(
+                                    elevation: 3,
+                                    child: new Container(
+                                      padding: new EdgeInsets.all(10.0),
+                                      child: new Column(
+                                        // mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              new Text(
+                                                snapshot
+                                                    .data.docs[index]['item']
+                                                    .toString(),
+                                                style: TextStyle(
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.pink),
+                                              ),
+                                              Text(DateTime.now()
+                                                      .difference(snapshot.data
+                                                          .docs[index]['time']
+                                                          .toDate())
+                                                      .inHours
+                                                      .toString() +
+                                                  " hrs ago"),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          Row(
+                                            children: [
+                                              Icon(Icons.location_on_outlined),
+                                              Text(
+                                                snapshot.data.docs[index]
+                                                    ['donorAddress'],
+                                                style: TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.w500),
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          new Text(snapshot.data.docs[index]
+                                              ['desc']),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                snapshot.data.docs[index]
+                                                    ['expiry'],
+                                                style: TextStyle(
+                                                    color: Colors.red,
+                                                    fontWeight:
+                                                        FontWeight.w500),
+                                              ),
+                                              Text(
+                                                snapshot.data.docs[index]
+                                                    ['type'],
+                                                style: TextStyle(
+                                                    color: Colors.green,
+                                                    fontWeight:
+                                                        FontWeight.w500),
+                                              ),
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                                Text('4h ago'),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Row(
-                              children: [
-                                Icon(Icons.location_on_outlined),
-                                Text(
-                                  'Bengaluru',
-                                  style: TextStyle(fontWeight: FontWeight.w500),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            new Text(
-                                'I am ready to share masks to share it in our schools and colleges to prevent corona spread.'),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Expires in 4 days',
-                                  style: TextStyle(
-                                      color: Colors.red,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                Text(
-                                  '500 pcs',
-                                  style: TextStyle(
-                                      color: Colors.green,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
+                              );
+                            });
+                      }),
                 ),
                 SingleChildScrollView(
                   child: Container(
@@ -238,4 +280,8 @@ String greetings() {
   } else {
     return 'Good evening,';
   }
+}
+
+getDonations() {
+  return FirebaseFirestore.instance.collection('donation').snapshots();
 }

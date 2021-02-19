@@ -72,15 +72,26 @@ class _ReviewDetailsState extends State<ReviewDetails> {
               ),
               onPressed: () {
                 try {
-                  donation.add({
-                    "type": widget.category,
-                    "donorName": widget.donorName,
-                    "donorAddress": widget.donorAddress,
-                    "donorNumber": widget.phno,
-                    "items": widget.items,
-                    "desc": widget.desc,
-                    "expiry": widget.expiry
-                  });
+                  // donation.add({
+                  //   "type": widget.category,
+                  //   "donorName": widget.donorName,
+                  //   "donorAddress": widget.donorAddress,
+                  //   "donorNumber": widget.phno,
+                  //   "items": widget.items,
+                  //   "desc": widget.desc,
+                  //   "expiry": widget.expiry
+                  for (int i = 0; i < widget.items.length; i++) {
+                    donation.add({
+                      "type": widget.category,
+                      "donorName": widget.donorName,
+                      "donorAddress": widget.donorAddress,
+                      "donorNumber": widget.phno,
+                      "item": widget.items[i],
+                      "desc": widget.desc[i],
+                      "expiry": widget.expiry[i],
+                      "time": DateTime.now().toLocal(),
+                    });
+                  }
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => Posted()));
                 } catch (error) {
