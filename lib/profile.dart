@@ -52,6 +52,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
         drawer: CustomDrawer(),
         appBar: AppBar(
+          backgroundColor: Colors.pink,
           title: Text('Profile'),
           centerTitle: true,
           actions: [AccountButton()],
