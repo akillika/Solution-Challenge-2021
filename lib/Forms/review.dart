@@ -72,14 +72,6 @@ class _ReviewDetailsState extends State<ReviewDetails> {
               ),
               onPressed: () {
                 try {
-                  // donation.add({
-                  //   "type": widget.category,
-                  //   "donorName": widget.donorName,
-                  //   "donorAddress": widget.donorAddress,
-                  //   "donorNumber": widget.phno,
-                  //   "items": widget.items,
-                  //   "desc": widget.desc,
-                  //   "expiry": widget.expiry
                   for (int i = 0; i < widget.items.length; i++) {
                     donation.add({
                       "type": widget.category,
