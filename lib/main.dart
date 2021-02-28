@@ -80,177 +80,226 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: StreamBuilder(
                       stream: getDonations(),
                       builder: (context, snapshot) {
-                        return ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: snapshot.data.size,
-                            itemBuilder: (context, index) {
-                              return GestureDetector(
-                                onTap: () async {
-                                  var url =
-                                      'tel:+91${snapshot.data.docs[index]['donorNumber']}';
-                                  if (await canLaunch(url)) {
-                                    await launch(url);
-                                  } else {
-                                    Fluttertoast.showToast(
-                                        msg: 'Try Again Later!!');
-                                  }
-                                },
-                                child: Container(
-                                  padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                                  width: double.maxFinite,
-                                  child: new Card(
-                                    elevation: 3,
-                                    child: new Container(
-                                      padding: new EdgeInsets.all(10.0),
-                                      child: new Column(
-                                        // mainAxisAlignment: MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              new Text(
-                                                snapshot
-                                                    .data.docs[index]['item']
-                                                    .toString(),
-                                                style: TextStyle(
-                                                    fontSize: 20,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.pink),
-                                              ),
-                                              Text(DateTime.now()
-                                                      .difference(snapshot.data
-                                                          .docs[index]['time']
-                                                          .toDate())
-                                                      .inHours
-                                                      .toString() +
-                                                  " hrs ago"),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: 5,
-                                          ),
-                                          Row(
-                                            children: [
-                                              Icon(Icons.location_on_outlined),
-                                              Text(
-                                                snapshot.data.docs[index]
-                                                    ['donorAddress'],
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.w500),
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: 5,
-                                          ),
-                                          new Text(snapshot.data.docs[index]
-                                              ['desc']),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text(
-                                                snapshot.data.docs[index]
-                                                    ['expiry'],
-                                                style: TextStyle(
-                                                    color: Colors.red,
-                                                    fontWeight:
-                                                        FontWeight.w500),
-                                              ),
-                                              Text(
-                                                snapshot.data.docs[index]
-                                                    ['type'],
-                                                style: TextStyle(
-                                                    color: Colors.green,
-                                                    fontWeight:
-                                                        FontWeight.w500),
-                                              ),
-                                            ],
-                                          )
-                                        ],
+                        if (snapshot.hasData) {
+                          return ListView.builder(
+                              physics: BouncingScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: snapshot.data.size,
+                              itemBuilder: (context, index) {
+                                return GestureDetector(
+                                  onTap: () async {
+                                    var url =
+                                        'tel:+91${snapshot.data.docs[index]['donorNumber']}';
+                                    if (await canLaunch(url)) {
+                                      await launch(url);
+                                    } else {
+                                      Fluttertoast.showToast(
+                                          msg: 'Try Again Later!!');
+                                    }
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                                    width: double.maxFinite,
+                                    child: new Card(
+                                      elevation: 3,
+                                      child: new Container(
+                                        padding: new EdgeInsets.all(10.0),
+                                        child: new Column(
+                                          // mainAxisAlignment: MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                new Text(
+                                                  snapshot
+                                                      .data.docs[index]['item']
+                                                      .toString(),
+                                                  style: TextStyle(
+                                                      fontSize: 20,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.pink),
+                                                ),
+                                                Text('Posted on : ' +
+                                                    snapshot.data
+                                                        .docs[index]['time']
+                                                        .toString()),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              snapshot.data.docs[index]['type'],
+                                              style: TextStyle(
+                                                  color: Colors.green,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            new Text(snapshot.data.docs[index]
+                                                ['desc']),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "Available till : " +
+                                                      snapshot.data.docs[index]
+                                                          ['expiry'],
+                                                  style: TextStyle(
+                                                      color: Colors.red,
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Icon(Icons
+                                                        .location_on_outlined),
+                                                    Text(
+                                                      snapshot.data.docs[index]
+                                                          ['city'],
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.w500),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            )
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              );
-                            });
+                                );
+                              });
+                        } else {
+                          return CircularProgressIndicator();
+                        }
                       }),
                 ),
                 SingleChildScrollView(
-                  child: Container(
-                    padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                    width: double.maxFinite,
-                    child: new Card(
-                      elevation: 3,
-                      child: new Container(
-                        padding: new EdgeInsets.all(10.0),
-                        child: new Column(
-                          // mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                new Text(
-                                  ' Candles',
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.pink),
-                                ),
-                                Text('4h ago'),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Row(
-                              children: [
-                                Icon(Icons.location_on_outlined),
-                                Text(
-                                  'Thanjavur',
-                                  style: TextStyle(fontWeight: FontWeight.w500),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            new Text(
-                                'I am ready to share masks to share it in our schools and colleges to prevent corona spread.'),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Need within 4 days',
-                                  style: TextStyle(
-                                      color: Colors.red,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                Text(
-                                  '100 pcs',
-                                  style: TextStyle(
-                                      color: Colors.green,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                    child: StreamBuilder(
+                        stream: getRequests(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            return ListView.builder(
+                              physics: BouncingScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: snapshot.data.size,
+                              itemBuilder: (context, index) {
+                                return GestureDetector(
+                                  onTap: () async {
+                                    var url =
+                                        'tel:+91${snapshot.data.docs[index]['donorNumber']}';
+                                    if (await canLaunch(url)) {
+                                      await launch(url);
+                                    } else {
+                                      Fluttertoast.showToast(
+                                          msg: 'Try Again Later!!');
+                                    }
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                                    width: double.maxFinite,
+                                    child: new Card(
+                                      elevation: 3,
+                                      child: new Container(
+                                        padding: new EdgeInsets.all(10.0),
+                                        child: new Column(
+                                          // mainAxisAlignment: MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                new Text(
+                                                  snapshot
+                                                      .data.docs[index]['item']
+                                                      .toString(),
+                                                  style: TextStyle(
+                                                      fontSize: 20,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.pink),
+                                                ),
+                                                Text('Posted on : ' +
+                                                    snapshot.data
+                                                        .docs[index]['time']
+                                                        .toString()),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              snapshot.data.docs[index]['type'],
+                                              style: TextStyle(
+                                                  color: Colors.green,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            new Text(snapshot.data.docs[index]
+                                                ['desc']),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "Needed by : " +
+                                                      snapshot.data.docs[index]
+                                                          ['expiry'],
+                                                  style: TextStyle(
+                                                      color: Colors.red,
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Icon(Icons
+                                                        .location_on_outlined),
+                                                    Text(
+                                                      snapshot.data.docs[index]
+                                                          ['city'],
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.w500),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          } else {
+                            return CircularProgressIndicator();
+                          }
+                        })),
               ],
             ),
             floatingActionButton: new FloatingActionButton(
@@ -284,4 +333,8 @@ String greetings() {
 
 getDonations() {
   return FirebaseFirestore.instance.collection('donation').snapshots();
+}
+
+getRequests() {
+  return FirebaseFirestore.instance.collection('requests').snapshots();
 }

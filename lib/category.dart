@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:solution_challenge_2021/Forms/donor.dart';
 import 'package:solution_challenge_2021/profile.dart';
-import 'package:solution_challenge_2021/requestDonation.dart';
 import 'package:solution_challenge_2021/widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -66,23 +65,15 @@ class _CategoryState extends State<Category> {
                     padding: EdgeInsets.all(10.0),
                     child: GestureDetector(
                       onTap: () {
-                        widget.type == 'Donate'
-                            ? Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => DonorDetails(
-                                          category: snapshot
-                                              .data.docs[index]['name']
-                                              .toString(),
-                                        )))
-                            : Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => RequestDonation(
-                                          category: snapshot
-                                              .data.docs[index]['name']
-                                              .toString(),
-                                        )));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DonorDetails(
+                                      type: widget.type,
+                                      category: snapshot
+                                          .data.docs[index]['name']
+                                          .toString(),
+                                    )));
                       },
                       child: Material(
                           borderRadius: BorderRadius.circular(20),

@@ -1,25 +1,34 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:solution_challenge_2021/Forms/location.dart';
+import 'package:solution_challenge_2021/Forms/review.dart';
 import 'package:solution_challenge_2021/widgets.dart';
 
 //TODO : Implement TextField Functions
 
 class DonationDetails extends StatefulWidget {
+  final String city;
+  final String type;
   final String category;
   final String donorName;
   final String donorAddress;
   final String phno;
 
   const DonationDetails(
-      {Key key, this.category, this.donorName, this.donorAddress, this.phno})
+      {Key key,
+      this.category,
+      this.donorName,
+      this.donorAddress,
+      this.phno,
+      this.type,
+      this.city})
       : super(key: key);
   @override
   _DonationDetailsState createState() => _DonationDetailsState();
 }
 
 class _DonationDetailsState extends State<DonationDetails> {
+  DateTime date = DateTime.now();
   int count;
   List<String> _items = [];
   List<String> _desc = [];
@@ -28,6 +37,16 @@ class _DonationDetailsState extends State<DonationDetails> {
   var descCtlrs = <TextEditingController>[];
   var expiryCtlrs = <TextEditingController>[];
   var cards = <Card>[];
+  Future<String> _selectDate(BuildContext context) async {
+    final DateTime picked = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime.now(),
+        lastDate: DateTime(2101));
+    if (picked != null && picked != date)
+      return "${picked.toLocal()}".split(' ')[0];
+  }
+
   Card createCard() {
     final nameController = TextEditingController();
     final descController = TextEditingController();
@@ -51,21 +70,29 @@ class _DonationDetailsState extends State<DonationDetails> {
             ),
             maxLines: 5,
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("Expiry : " + expiryController.text,
+                  style: TextStyle(fontSize: 16)),
+              IconButton(
+                  icon: Icon(
+                    Icons.calendar_today_outlined,
+                    color: Colors.blue,
+                    size: 20,
+                  ),
+                  onPressed: () async {
+                    String date = await _selectDate(context);
+                    setState(() {
+                      expiryController.text = date;
+                    });
+                  }),
+            ],
+          ),
           TextField(
             controller: expiryController,
-            decoration: InputDecoration(
-              hintText: 'Expiry(if any)',
-            ),
             maxLines: 1,
           ),
-          // const Divider(
-          //   color: Colors.pink,
-          //   height: 50,
-
-          //   thickness: 5,
-          //   // indent: 20,
-          //   // endIndent: 0,
-          // ),
         ],
       ),
     );
@@ -81,7 +108,9 @@ class _DonationDetailsState extends State<DonationDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('${widget.category} Donation Details'),
+        title: Text(widget.type == "Donate"
+            ? "${widget.category} Donor Details"
+            : "${widget.category} Request Details"),
         actions: [AccountButton()],
         centerTitle: true,
       ),
@@ -128,8 +157,10 @@ class _DonationDetailsState extends State<DonationDetails> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => LocationDetails(
+                      builder: (context) => ReviewDetails(
+                            type: widget.type,
                             category: widget.category,
+                            city: widget.city,
                             donorAddress: widget.donorAddress,
                             donorName: widget.donorName,
                             phno: widget.phno,

@@ -5,6 +5,8 @@ import 'package:solution_challenge_2021/posted.dart';
 import 'package:solution_challenge_2021/widgets.dart';
 
 class ReviewDetails extends StatefulWidget {
+  final String city;
+  final String type;
   final String category;
   final String donorName;
   final String donorAddress;
@@ -21,7 +23,9 @@ class ReviewDetails extends StatefulWidget {
       this.phno,
       this.items,
       this.desc,
-      this.expiry})
+      this.expiry,
+      this.type,
+      this.city})
       : super(key: key);
   @override
   _ReviewDetailsState createState() => _ReviewDetailsState();
@@ -30,6 +34,8 @@ class ReviewDetails extends StatefulWidget {
 class _ReviewDetailsState extends State<ReviewDetails> {
   final CollectionReference donation =
       FirebaseFirestore.instance.collection('donation');
+  final CollectionReference requests =
+      FirebaseFirestore.instance.collection('requests');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,6 +48,8 @@ class _ReviewDetailsState extends State<ReviewDetails> {
       body: Center(
         child: Column(
           children: [
+            Text("Type : ${widget.type}"),
+            Text("City : ${widget.city}"),
             Text('Donating : ${widget.category}'),
             Text('Donor Name : ${widget.donorName}'),
             Text(
@@ -72,17 +80,35 @@ class _ReviewDetailsState extends State<ReviewDetails> {
               ),
               onPressed: () {
                 try {
-                  for (int i = 0; i < widget.items.length; i++) {
-                    donation.add({
-                      "type": widget.category,
-                      "donorName": widget.donorName,
-                      "donorAddress": widget.donorAddress,
-                      "donorNumber": widget.phno,
-                      "item": widget.items[i],
-                      "desc": widget.desc[i],
-                      "expiry": widget.expiry[i],
-                      "time": DateTime.now().toLocal(),
-                    });
+                  if (widget.type == "Donate") {
+                    for (int i = 0; i < widget.items.length; i++) {
+                      donation.add({
+                        "type": widget.category,
+                        "city": widget.city,
+                        "donorName": widget.donorName,
+                        "donorAddress": widget.donorAddress,
+                        "donorNumber": widget.phno,
+                        "item": widget.items[i],
+                        "desc": widget.desc[i],
+                        "expiry": widget.expiry[i],
+                        "time": "${DateTime.now().toLocal()}".split(' ')[0],
+                      });
+                    }
+                  }
+                  if (widget.type == "Request Donation") {
+                    for (int i = 0; i < widget.items.length; i++) {
+                      requests.add({
+                        "type": widget.category,
+                        "city": widget.city,
+                        "donorName": widget.donorName,
+                        "donorAddress": widget.donorAddress,
+                        "donorNumber": widget.phno,
+                        "item": widget.items[i],
+                        "desc": widget.desc[i],
+                        "expiry": widget.expiry[i],
+                        "time": "${DateTime.now().toLocal()}".split(' ')[0],
+                      });
+                    }
                   }
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => Posted()));

@@ -51,9 +51,7 @@ class CustomDrawer extends StatelessWidget {
           GestureDetector(
             onTap: () {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) => Category()));
+                  context, MaterialPageRoute(builder: (context) => Category()));
             },
             child: Text(
               'Donate',
