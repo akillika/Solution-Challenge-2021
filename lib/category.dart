@@ -24,6 +24,7 @@ class _CategoryState extends State<Category> {
     return Scaffold(
       drawer: CustomDrawer(),
       appBar: AppBar(
+        backgroundColor: Colors.pink,
         title: Text('Categories'),
         centerTitle: true,
         actions: [

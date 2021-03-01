@@ -13,6 +13,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.pink,
         title: Text('Login'),
         centerTitle: true,
       ),
@@ -22,8 +23,18 @@ class _LoginPageState extends State<LoginPage> {
         child: Center(
           child: Column(
             mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
+              SizedBox(
+                height: 90,
+              ),
+              Text(
+                'Welcome to Easy Donate',
+                style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.pink,
+                    fontWeight: FontWeight.bold),
+              ),
               Image.asset('assets/logim.png'),
               SizedBox(height: 50),
               _signInButton(),
@@ -46,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
               MaterialPageRoute<dynamic>(
                 builder: (BuildContext context) => MyHomePage(),
               ),
-                  (route) => false,
+              (route) => false,
             );
           }
         });

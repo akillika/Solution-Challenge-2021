@@ -108,6 +108,7 @@ class _DonationDetailsState extends State<DonationDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.pink,
         title: Text(widget.type == "Donate"
             ? "${widget.category} Donor Details"
             : "${widget.category} Request Details"),
@@ -140,6 +141,7 @@ class _DonationDetailsState extends State<DonationDetails> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.pink,
           child: Icon(Icons.save),
           onPressed: () {
             try {

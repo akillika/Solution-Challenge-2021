@@ -40,84 +40,251 @@ class _ReviewDetailsState extends State<ReviewDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.pink,
         title: Text('Review Details'),
         centerTitle: true,
         actions: [AccountButton()],
       ),
       drawer: CustomDrawer(),
-      body: Center(
-        child: Column(
-          children: [
-            Text("Type : ${widget.type}"),
-            Text("City : ${widget.city}"),
-            Text('Donating : ${widget.category}'),
-            Text('Donor Name : ${widget.donorName}'),
-            Text(
-              'Donor Address : ${widget.donorAddress}',
-              softWrap: true,
-            ),
-            Text('Donor Contact Number : ${widget.phno}'),
-            Text('Items :'),
-            ListView.builder(
-              shrinkWrap: true,
-              itemCount: widget.items.length,
-              itemBuilder: (context, index) {
-                return Column(
-                  children: [
-                    Text('Item $index : ${widget.items[index]}'),
-                    Text('Description $index : ${widget.desc[index]}'),
-                    Text('Expiry $index : ${widget.expiry[index]}')
-                  ],
-                );
-              },
-            ),
-            RaisedButton(
-              shape: StadiumBorder(),
-              color: Colors.green,
-              child: Text(
-                'Post',
-                style: TextStyle(color: Colors.white),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            children: [
+              Container(
+                padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                width: double.maxFinite,
+                child: Card(
+                    elevation: 3,
+                    child: Container(
+                      padding: new EdgeInsets.all(10.0),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                "Type : ",
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.pink),
+                              ),
+                              Text("${widget.type}"),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 7,
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                "City : ",
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.pink),
+                              ),
+                              Text("${widget.city}"),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 7,
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                "Donating : ",
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.pink),
+                              ),
+                              Text("${widget.category}"),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 7,
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                "Donor Name : ",
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.pink),
+                              ),
+                              Text("${widget.donorName}"),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 7,
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                "Donor Address : ",
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.pink),
+                              ),
+                              Text("${widget.donorAddress}"),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 7,
+                          ),
+                          // Text(
+                          //   'Donor Address : ${widget.donorAddress}',
+                          //   softWrap: true,
+                          // ),
+                          Row(
+                            children: [
+                              Text(
+                                "Donor Contact Number : ",
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.pink),
+                              ),
+                              Text("${widget.phno}"),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 7,
+                          ),
+                        ],
+                      ),
+                    )),
               ),
-              onPressed: () {
-                try {
-                  if (widget.type == "Donate") {
-                    for (int i = 0; i < widget.items.length; i++) {
-                      donation.add({
-                        "type": widget.category,
-                        "city": widget.city,
-                        "donorName": widget.donorName,
-                        "donorAddress": widget.donorAddress,
-                        "donorNumber": widget.phno,
-                        "item": widget.items[i],
-                        "desc": widget.desc[i],
-                        "expiry": widget.expiry[i],
-                        "time": "${DateTime.now().toLocal()}".split(' ')[0],
-                      });
+              SizedBox(height: 15),
+              Container(
+                  padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                  width: double.maxFinite,
+                  child: Card(
+                      elevation: 3,
+                      child: Flexible(
+                        child: Container(
+                            padding: new EdgeInsets.all(10.0),
+                            child: Column(
+                              children: [
+                                ListView.builder(
+                                  shrinkWrap: true,
+                                  itemCount: widget.items.length,
+                                  itemBuilder: (context, index) {
+                                    return Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Product : ',
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.pink),
+                                            ),
+                                            Text('${widget.items[index]}'),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 7,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Description  : ',
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.pink),
+                                            ),
+                                          ],
+                                        ),
+                                        Text(
+                                          '${widget.desc[index]}',
+                                          softWrap: true,
+                                        ),
+                                        SizedBox(
+                                          height: 7,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Expiry  : ',
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.pink),
+                                            ),
+                                            Text('${widget.expiry[index]}'),
+                                          ],
+                                        ),
+                                        Divider(),
+                                        SizedBox(
+                                          height: 15,
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                ),
+                              ],
+                            )),
+                      ))),
+              SizedBox(
+                height: 15,
+              ),
+              RaisedButton(
+                shape: StadiumBorder(),
+                color: Colors.green,
+                child: Text(
+                  'Confirm and Post',
+                  style: TextStyle(color: Colors.white),
+                ),
+                onPressed: () {
+                  try {
+                    if (widget.type == "Donate") {
+                      for (int i = 0; i < widget.items.length; i++) {
+                        donation.add({
+                          "type": widget.category,
+                          "city": widget.city,
+                          "donorName": widget.donorName,
+                          "donorAddress": widget.donorAddress,
+                          "donorNumber": widget.phno,
+                          "item": widget.items[i],
+                          "desc": widget.desc[i],
+                          "expiry": widget.expiry[i],
+                          "time": "${DateTime.now().toLocal()}".split(' ')[0],
+                        });
+                      }
                     }
-                  }
-                  if (widget.type == "Request Donation") {
-                    for (int i = 0; i < widget.items.length; i++) {
-                      requests.add({
-                        "type": widget.category,
-                        "city": widget.city,
-                        "donorName": widget.donorName,
-                        "donorAddress": widget.donorAddress,
-                        "donorNumber": widget.phno,
-                        "item": widget.items[i],
-                        "desc": widget.desc[i],
-                        "expiry": widget.expiry[i],
-                        "time": "${DateTime.now().toLocal()}".split(' ')[0],
-                      });
+                    if (widget.type == "Request Donation") {
+                      for (int i = 0; i < widget.items.length; i++) {
+                        requests.add({
+                          "type": widget.category,
+                          "city": widget.city,
+                          "donorName": widget.donorName,
+                          "donorAddress": widget.donorAddress,
+                          "donorNumber": widget.phno,
+                          "item": widget.items[i],
+                          "desc": widget.desc[i],
+                          "expiry": widget.expiry[i],
+                          "time": "${DateTime.now().toLocal()}".split(' ')[0],
+                        });
+                      }
                     }
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Posted()));
+                  } catch (error) {
+                    Fluttertoast.showToast(msg: error);
                   }
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Posted()));
-                } catch (error) {
-                  Fluttertoast.showToast(msg: error);
-                }
-              },
-            )
-          ],
+                },
+              )
+            ],
+          ),
         ),
       ),
     );

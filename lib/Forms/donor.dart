@@ -19,6 +19,7 @@ class _DonorDetailsState extends State<DonorDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.pink,
         title: Text(widget.type == "Donate"
             ? "${widget.category} Donor Details"
             : "${widget.category} Request Details"),

@@ -50,8 +50,10 @@ class CustomDrawer extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Category()));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => Category(
+                        type: 'Donate',
+                      )));
             },
             child: Text(
               'Donate',
@@ -66,14 +68,22 @@ class CustomDrawer extends StatelessWidget {
           SizedBox(
             height: 45,
           ),
-          Text(
-            'Ask',
-            style: TextStyle(
-              fontFamily: 'Avenir',
-              fontSize: 24,
-              fontWeight: FontWeight.w700,
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => Category(
+                        type: 'Request Donation',
+                      )));
+            },
+            child: Text(
+              'Request Donation',
+              style: TextStyle(
+                fontFamily: 'Avenir',
+                fontSize: 24,
+                fontWeight: FontWeight.w700,
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
           ),
           SizedBox(
             height: 45,
