@@ -1,4 +1,4 @@
-package com.example.solution_challenge_2021
+package com.thedeveloperstudio.easydonate
 
 import io.flutter.embedding.android.FlutterActivity
 
