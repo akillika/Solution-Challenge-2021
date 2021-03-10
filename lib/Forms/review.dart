@@ -163,76 +163,70 @@ class _ReviewDetailsState extends State<ReviewDetails> {
                   width: double.maxFinite,
                   child: Card(
                       elevation: 3,
-                      child: Flexible(
-                        child: Container(
-                            padding: new EdgeInsets.all(10.0),
-                            child: Column(
-                              children: [
-                                ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: widget.items.length,
-                                  itemBuilder: (context, index) {
-                                    return Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Text(
-                                              'Product : ',
-                                              style: TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.pink),
-                                            ),
-                                            Text('${widget.items[index]}'),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 7,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              'Description  : ',
-                                              style: TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.pink),
-                                            ),
-                                          ],
-                                        ),
-                                        Text(
-                                          '${widget.desc[index]}',
-                                          softWrap: true,
-                                        ),
-                                        SizedBox(
-                                          height: 7,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              'Expiry  : ',
-                                              style: TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.pink),
-                                            ),
-                                            Text('${widget.expiry[index]}'),
-                                          ],
-                                        ),
-                                        Divider(),
-                                        SizedBox(
-                                          height: 15,
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                ),
-                              ],
-                            )),
+                      child: Column(
+                        children: [
+                          ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: widget.items.length,
+                            itemBuilder: (context, index) {
+                              return Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text(
+                                        'Product : ',
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.pink),
+                                      ),
+                                      Text('${widget.items[index]}'),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 7,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        'Description  : ',
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.pink),
+                                      ),
+                                    ],
+                                  ),
+                                  Text(
+                                    '${widget.desc[index]}',
+                                    softWrap: true,
+                                  ),
+                                  SizedBox(
+                                    height: 7,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        'Expiry  : ',
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.pink),
+                                      ),
+                                      Text('${widget.expiry[index]}'),
+                                    ],
+                                  ),
+                                  Divider(),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                ],
+                              );
+                            },
+                          ),
+                        ],
                       ))),
               SizedBox(
                 height: 15,
