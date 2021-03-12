@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:solution_challenge_2021/signin.dart';
 
 import 'main.dart';
@@ -49,6 +50,11 @@ class _LoginPageState extends State<LoginPage> {
     return OutlineButton(
       splashColor: Colors.grey,
       onPressed: () {
+        Fluttertoast.showToast(
+          msg: "Please wait until we log you in",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+        );
         signInWithGoogle().then((result) {
           print(name);
           if (result != null) {
