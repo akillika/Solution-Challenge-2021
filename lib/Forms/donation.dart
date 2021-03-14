@@ -89,9 +89,28 @@ class _DonationDetailsState extends State<DonationDetails> {
                   }),
             ],
           ),
-          TextField(
-            controller: expiryController,
-            maxLines: 1,
+          Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: expiryController,
+                  enabled: false,
+                  maxLines: 1,
+                ),
+              ),
+              IconButton(
+                icon: Icon(
+                  Icons.delete,
+                  color: Colors.red,
+                  size: 25,
+                ),
+                onPressed: () {
+                  nameCtlrs.remove(nameController);
+                  descCtlrs.remove(descController);
+                  expiryCtlrs.remove(expiryController);
+                },
+              ),
+            ],
           ),
         ],
       ),
@@ -110,7 +129,7 @@ class _DonationDetailsState extends State<DonationDetails> {
       appBar: AppBar(
         backgroundColor: Colors.pink,
         title: Text(widget.type == "Donate"
-            ? "${widget.category} Donor Details"
+            ? "${widget.category} Donation Details"
             : "${widget.category} Request Details"),
         actions: [AccountButton()],
         centerTitle: true,
@@ -144,14 +163,24 @@ class _DonationDetailsState extends State<DonationDetails> {
           backgroundColor: Colors.pink,
           child: Icon(Icons.save),
           onPressed: () {
-            try {
+            var flag;
+            for (int i = 0; i < cards.length; i++) {
+              if (nameCtlrs[i].text != null &&
+                  nameCtlrs[i].text.trim() != "" &&
+                  descCtlrs[i].text != null &&
+                  descCtlrs[i].text.trim() != "" &&
+                  expiryCtlrs[i].text != null &&
+                  expiryCtlrs[i].text.trim() != "") {
+                flag = 1;
+                continue;
+              } else {
+                Fluttertoast.showToast(msg: 'None of the Fields can be Empty');
+                flag = 0;
+                break;
+              }
+            }
+            if (flag == 1) {
               for (int i = 0; i < cards.length; i++) {
-                assert(nameCtlrs[i].text != null &&
-                    nameCtlrs[i].text.trim() != "");
-                assert(descCtlrs[i].text != null &&
-                    descCtlrs[i].text.trim() != "");
-                assert(expiryCtlrs[i].text != null &&
-                    expiryCtlrs[i].text.trim() != "");
                 _items.add(nameCtlrs[i].text);
                 _desc.add(descCtlrs[i].text);
                 _expiry.add(expiryCtlrs[i].text);
@@ -170,8 +199,6 @@ class _DonationDetailsState extends State<DonationDetails> {
                             items: _items,
                             expiry: _expiry,
                           )));
-            } on AssertionError {
-              Fluttertoast.showToast(msg: 'None of the Fields can be Empty');
             }
           }),
     );

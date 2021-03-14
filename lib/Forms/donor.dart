@@ -77,10 +77,14 @@ class _DonorDetailsState extends State<DonorDetails> {
                 height: 20,
               ),
               NextButton(func: () {
-                try {
-                  assert(name != null && name.trim() != "");
-                  assert(address != null && address.trim() != "");
-                  assert(mobile != null && mobile.trim() != "");
+                if (name != null &&
+                    name.trim() != "" &&
+                    address != null &&
+                    address.trim() != "" &&
+                    mobile != null &&
+                    mobile.trim() != "" &&
+                    city != null &&
+                    city.trim() != "") {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -92,7 +96,7 @@ class _DonorDetailsState extends State<DonorDetails> {
                                 donorName: name,
                                 phno: mobile,
                               )));
-                } on AssertionError {
+                } else {
                   Fluttertoast.showToast(
                       msg: 'None of the Fields can be Empty');
                 }
