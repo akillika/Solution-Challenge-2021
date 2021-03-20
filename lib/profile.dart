@@ -55,7 +55,6 @@ class _ProfilePageState extends State<ProfilePage> {
           backgroundColor: Colors.pink,
           title: Text('Profile'),
           centerTitle: true,
-          actions: [AccountButton()],
         ),
         backgroundColor: Colors.white,
         body: Center(

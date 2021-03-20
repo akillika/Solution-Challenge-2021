@@ -27,23 +27,7 @@ class _CategoryState extends State<Category> {
         backgroundColor: Colors.pink,
         title: Text('Categories'),
         centerTitle: true,
-        actions: [
-          Padding(
-            padding: EdgeInsets.only(right: 20.0),
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => ProfilePage()));
-              },
-              child: Icon(
-                Icons.account_circle,
-                size: 26.0,
-              ),
-            ),
-          ),
-        ],
+        actions: [AccountButton()],
       ),
       backgroundColor: Colors.white,
       body: StreamBuilder(

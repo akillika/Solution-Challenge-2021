@@ -73,8 +73,15 @@ class _DonationDetailsState extends State<DonationDetails> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("Expiry : " + expiryController.text,
+              Text("Expiry : ${expiryController.text}",
                   style: TextStyle(fontSize: 16)),
+              Expanded(
+                child: TextField(
+                  controller: expiryController,
+                  enabled: false,
+                  maxLines: 1,
+                ),
+              ),
               IconButton(
                   icon: Icon(
                     Icons.calendar_today_outlined,
@@ -89,29 +96,6 @@ class _DonationDetailsState extends State<DonationDetails> {
                   }),
             ],
           ),
-          Row(
-            children: [
-              Expanded(
-                child: TextField(
-                  controller: expiryController,
-                  enabled: false,
-                  maxLines: 1,
-                ),
-              ),
-              IconButton(
-                icon: Icon(
-                  Icons.delete,
-                  color: Colors.red,
-                  size: 25,
-                ),
-                onPressed: () {
-                  nameCtlrs.remove(nameController);
-                  descCtlrs.remove(descController);
-                  expiryCtlrs.remove(expiryController);
-                },
-              ),
-            ],
-          ),
         ],
       ),
     );
@@ -121,6 +105,7 @@ class _DonationDetailsState extends State<DonationDetails> {
   void initState() {
     cards.add(createCard());
     super.initState();
+    Fluttertoast.showToast(msg: "Swipe the item to Delete it!!");
   }
 
   @override
@@ -141,7 +126,17 @@ class _DonationDetailsState extends State<DonationDetails> {
             child: ListView.builder(
               itemCount: cards.length,
               itemBuilder: (BuildContext context, int index) {
-                return cards[index];
+                return Dismissible(
+                    background: Container(
+                      color: Colors.red,
+                    ),
+                    key: UniqueKey(),
+                    onDismissed: (direction) {
+                      setState(() {
+                        cards.removeAt(index);
+                      });
+                    },
+                    child: cards[index]);
               },
             ),
           ),
@@ -180,6 +175,9 @@ class _DonationDetailsState extends State<DonationDetails> {
               }
             }
             if (flag == 1) {
+              _items.clear();
+              _desc.clear();
+              _expiry.clear();
               for (int i = 0; i < cards.length; i++) {
                 _items.add(nameCtlrs[i].text);
                 _desc.add(descCtlrs[i].text);
