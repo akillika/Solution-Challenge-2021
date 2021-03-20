@@ -1,39 +1,19 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:solution_challenge_2021/login.dart';
+import 'package:solution_challenge_2021/main.dart';
 
-import 'main.dart';
-
-class MyApp1 extends StatelessWidget {
+class Splash extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Solution Challenge',
-      theme: ThemeData(
-        primarySwatch: Colors.pink,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(title: 'Solution Challenge'),
-    );
-  }
+  _SplashState createState() => _SplashState();
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+class _SplashState extends State<Splash> {
   final splashDelay = 3;
 
   @override
   void initState() {
     super.initState();
-
     _loadWidget();
   }
 
@@ -43,8 +23,11 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void navigationPage() {
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (BuildContext context) => MyApp()));
+    signed
+        ? Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (BuildContext context) => MyHomePage()))
+        : Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (BuildContext context) => LoginPage()));
   }
 
   @override
