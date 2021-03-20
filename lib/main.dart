@@ -3,16 +3,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:solution_challenge_2021/postnew.dart';
+import 'package:solution_challenge_2021/signin.dart';
 import 'package:solution_challenge_2021/widgets.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'login.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 void main() async {
-  runApp(MyApp());
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  signed = await googleSignIn.isSignedIn();
+  runApp(MyApp());
 }
+
+bool signed;
 
 class MyApp extends StatefulWidget {
   @override
@@ -29,7 +33,7 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.pink,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: LoginPage(),
+      home: signed ? MyHomePage() : LoginPage(),
     );
   }
 }
@@ -297,7 +301,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               },
                             );
                           } else {
-                            return CircularProgressIndicator();
+                            return Center(child: CircularProgressIndicator());
                           }
                         })),
               ],
