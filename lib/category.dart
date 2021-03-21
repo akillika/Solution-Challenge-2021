@@ -29,55 +29,60 @@ class _CategoryState extends State<Category> {
         actions: [AccountButton()],
       ),
       backgroundColor: Colors.white,
-      body: StreamBuilder(
-        stream: getCategories(),
-        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (!snapshot.hasData) {
-            return Center(child: CircularProgressIndicator());
-          } else {
-            return GridView.builder(
-              gridDelegate:
-                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-              physics: BouncingScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: snapshot.data.size,
-              itemBuilder: (context, index) {
-                return Container(
-                  color: Colors.white,
-                  child: GridTile(
-                      child: Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => DonorDetails(
-                                      type: widget.type,
-                                      category: snapshot
-                                          .data.docs[index]['name']
-                                          .toString(),
-                                    )));
-                      },
-                      child: Material(
-                          borderRadius: BorderRadius.circular(20),
-                          // elevation: 25,
-                          color: Colors.pink,
-                          child: Container(
-                              height: 50,
-                              width: 50,
-                              child: Center(
-                                  child: Text(
-                                snapshot.data.docs[index]['name'],
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 20),
-                              )))),
-                    ),
-                  )),
+      body: OrientationBuilder(
+        builder: (context, orientation) {
+          return StreamBuilder(
+            stream: getCategories(),
+            builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (!snapshot.hasData) {
+                return Center(child: CircularProgressIndicator());
+              } else {
+                return GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount:
+                          orientation == Orientation.portrait ? 2 : 4),
+                  physics: BouncingScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: snapshot.data.size,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      color: Colors.white,
+                      child: GridTile(
+                          child: Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DonorDetails(
+                                          type: widget.type,
+                                          category: snapshot
+                                              .data.docs[index]['name']
+                                              .toString(),
+                                        )));
+                          },
+                          child: Material(
+                              borderRadius: BorderRadius.circular(20),
+                              // elevation: 25,
+                              color: Colors.pink,
+                              child: Container(
+                                  height: 50,
+                                  width: 50,
+                                  child: Center(
+                                      child: Text(
+                                    snapshot.data.docs[index]['name'],
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 20),
+                                  )))),
+                        ),
+                      )),
+                    );
+                  },
                 );
-              },
-            );
-          }
+              }
+            },
+          );
         },
       ),
     );
