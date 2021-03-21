@@ -4,6 +4,7 @@ import 'package:solution_challenge_2021/Pages/donationsTab.dart';
 import 'package:solution_challenge_2021/Pages/requestsTab.dart';
 import 'package:solution_challenge_2021/postnew.dart';
 import 'package:solution_challenge_2021/signin.dart';
+import 'package:solution_challenge_2021/splash.dart';
 import 'package:solution_challenge_2021/widgets.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'login.dart';
@@ -32,7 +33,7 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.pink,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: signed ? MyHomePage() : LoginPage(),
+      home: Splash(),
     );
   }
 }
@@ -49,53 +50,50 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: DefaultTabController(
-        length: 2,
-        child: Scaffold(
-            drawer: CustomDrawer(),
-            appBar: AppBar(
-              title: Text('Easy Donate'),
-              centerTitle: true,
-              backgroundColor: Colors.pink,
-              actions: [AccountButton()],
-              bottom: TabBar(
-                tabs: [
-                  Tab(
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Text("Donations"),
-                    ),
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+          drawer: CustomDrawer(),
+          appBar: AppBar(
+            title: Text('Easy Donate'),
+            centerTitle: true,
+            backgroundColor: Colors.pink,
+            actions: [AccountButton()],
+            bottom: TabBar(
+              tabs: [
+                Tab(
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text("Donations"),
                   ),
-                  Tab(
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Text("Requests"),
-                    ),
+                ),
+                Tab(
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text("Requests"),
                   ),
-                ],
-              ),
-            ),
-            body: TabBarView(
-              children: [
-                SingleChildScrollView(child: DonationsTab()),
-                SingleChildScrollView(child: RequestsTab()),
+                ),
               ],
             ),
-            floatingActionButton: new FloatingActionButton(
-              backgroundColor: Colors.pink,
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => Postnew()));
-              },
-              tooltip: 'Post',
-              child: new Icon(Icons.add),
-            ) // This trailing
-            ),
-      ),
+          ),
+          body: TabBarView(
+            children: [
+              SingleChildScrollView(child: DonationsTab()),
+              SingleChildScrollView(child: RequestsTab()),
+            ],
+          ),
+          floatingActionButton: new FloatingActionButton(
+            backgroundColor: Colors.pink,
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => Postnew()));
+            },
+            tooltip: 'Post',
+            child: new Icon(Icons.add),
+          ) // This trailing
+          ),
     );
   }
 }

@@ -18,7 +18,6 @@ class _PostnewState extends State<Postnew> {
         actions: [AccountButton()],
       ),
       backgroundColor: Colors.white,
-      drawer: CustomDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(

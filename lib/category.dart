@@ -22,7 +22,6 @@ class _CategoryState extends State<Category> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: CustomDrawer(),
       appBar: AppBar(
         backgroundColor: Colors.pink,
         title: Text('Categories'),

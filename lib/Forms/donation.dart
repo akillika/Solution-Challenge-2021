@@ -119,7 +119,6 @@ class _DonationDetailsState extends State<DonationDetails> {
         actions: [AccountButton()],
         centerTitle: true,
       ),
-      drawer: CustomDrawer(),
       body: Column(
         children: [
           Expanded(

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:solution_challenge_2021/Pages/detailsPage.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DonationsTab extends StatefulWidget {
@@ -24,19 +25,19 @@ class _DonationsTabState extends State<DonationsTab> {
                 shrinkWrap: true,
                 itemCount: snapshot.data.size,
                 itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () async {
-                      var url =
-                          'tel:+91${snapshot.data.docs[index]['donorNumber']}';
-                      if (await canLaunch(url)) {
-                        await launch(url);
-                      } else {
-                        Fluttertoast.showToast(msg: 'Try Again Later!!');
-                      }
-                    },
-                    child: Container(
-                      padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                      width: double.maxFinite,
+                  return Container(
+                    padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                    width: double.maxFinite,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DetailsPage(
+                                      snapshot: snapshot,
+                                      index: index,
+                                    )));
+                      },
                       child: new Card(
                         elevation: 3,
                         child: new Container(
