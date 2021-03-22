@@ -27,25 +27,172 @@ class _DetailsPageState extends State<DetailsPage> {
         child: Center(
           child: Column(
             children: [
-              Text("Type : " + widget.snapshot.data.docs[widget.index]['type']),
-              Text("Name : " +
-                  widget.snapshot.data.docs[widget.index]['donorName']),
-              Text("Address : " +
-                  widget.snapshot.data.docs[widget.index]['donorAddress']),
-              Text("City : " + widget.snapshot.data.docs[widget.index]['city']),
-              Text("Number : " +
-                  widget.snapshot.data.docs[widget.index]['donorNumber']),
-              Text("Item : " + widget.snapshot.data.docs[widget.index]['item']),
-              Text("Description : " +
-                  widget.snapshot.data.docs[widget.index]['desc']),
-              Text("Available till : " +
-                  widget.snapshot.data.docs[widget.index]['expiry']),
-              Text("Posted on : " +
-                  widget.snapshot.data.docs[widget.index]['time']),
+              Container(
+                padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                width: double.maxFinite,
+                child: Card(
+                    elevation: 3,
+                    child: Container(
+                      padding: new EdgeInsets.all(10.0),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                "Type : ",
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.pink),
+                              ),
+                              Text(
+                                  "${widget.snapshot.data.docs[widget.index]['type']}"),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 7,
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                "City : ",
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.pink),
+                              ),
+                              Text(
+                                  "${widget.snapshot.data.docs[widget.index]['city']}"),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 7,
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                "Donating : ",
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.pink),
+                              ),
+                              Text(
+                                  "${widget.snapshot.data.docs[widget.index]['item']}"),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 7,
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                "Donor Name : ",
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.pink),
+                              ),
+                              Text(
+                                  "${widget.snapshot.data.docs[widget.index]['donorName']}"),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 7,
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                "Donor Address : ",
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.pink),
+                              ),
+                              Text(
+                                  "${widget.snapshot.data.docs[widget.index]['donorAddress']}"),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 7,
+                          ),
+                          // Text(
+                          //   'Donor Address : ${widget.donorAddress}',
+                          //   softWrap: true,
+                          // ),
+                          Row(
+                            children: [
+                              Text(
+                                "Donor Contact Number : ",
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.pink),
+                              ),
+                              Text(
+                                  "${widget.snapshot.data.docs[widget.index]['donorNumber']}"),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 7,
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                "Description : ",
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.pink),
+                              ),
+                              Text(
+                                  "${widget.snapshot.data.docs[widget.index]['desc']}"),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 7,
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                "Available till : ",
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.pink),
+                              ),
+                              Text(
+                                  "${widget.snapshot.data.docs[widget.index]['expiry']}"),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 7,
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                "Posted on : ",
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.pink),
+                              ),
+                              Text(
+                                  "${widget.snapshot.data.docs[widget.index]['time']}"),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 7,
+                          ),
+                        ],
+                      ),
+                    )),
+              ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   RaisedButton(
+                    color: Colors.green,
                     onPressed: () async {
                       var url =
                           'tel:+91${widget.snapshot.data.docs[widget.index]['donorNumber']}';
@@ -55,9 +202,27 @@ class _DetailsPageState extends State<DetailsPage> {
                         Fluttertoast.showToast(msg: 'Try Again Later!!');
                       }
                     },
-                    child: Text('Call'),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.call,
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          'Call',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
                   ),
                   RaisedButton(
+                    color: Colors.amber,
                     onPressed: () async {
                       var url =
                           'sms:+91${widget.snapshot.data.docs[widget.index]['donorNumber']}';
@@ -67,7 +232,21 @@ class _DetailsPageState extends State<DetailsPage> {
                         Fluttertoast.showToast(msg: 'Try Again Later!!');
                       }
                     },
-                    child: Text('Message'),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.message,
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          'Message',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
+                    ),
                   )
                 ],
               )
