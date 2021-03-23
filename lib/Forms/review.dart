@@ -77,21 +77,6 @@ class _ReviewDetailsState extends State<ReviewDetails> {
                           Row(
                             children: [
                               Text(
-                                "City : ",
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.pink),
-                              ),
-                              Text("${widget.city}"),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 7,
-                          ),
-                          Row(
-                            children: [
-                              Text(
                                 "Donating : ",
                                 style: TextStyle(
                                     fontSize: 16,
@@ -134,10 +119,21 @@ class _ReviewDetailsState extends State<ReviewDetails> {
                           SizedBox(
                             height: 7,
                           ),
-                          // Text(
-                          //   'Donor Address : ${widget.donorAddress}',
-                          //   softWrap: true,
-                          // ),
+                          Row(
+                            children: [
+                              Text(
+                                "City : ",
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.pink),
+                              ),
+                              Text("${widget.city}"),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 7,
+                          ),
                           Row(
                             children: [
                               Text(
@@ -163,70 +159,73 @@ class _ReviewDetailsState extends State<ReviewDetails> {
                   width: double.maxFinite,
                   child: Card(
                       elevation: 3,
-                      child: Column(
-                        children: [
-                          ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: widget.items.length,
-                            itemBuilder: (context, index) {
-                              return Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        'Product : ',
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.pink),
-                                      ),
-                                      Text('${widget.items[index]}'),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 7,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        'Description  : ',
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.pink),
-                                      ),
-                                    ],
-                                  ),
-                                  Text(
-                                    '${widget.desc[index]}',
-                                    softWrap: true,
-                                  ),
-                                  SizedBox(
-                                    height: 7,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        'Expiry  : ',
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.pink),
-                                      ),
-                                      Text('${widget.expiry[index]}'),
-                                    ],
-                                  ),
-                                  Divider(),
-                                  SizedBox(
-                                    height: 15,
-                                  ),
-                                ],
-                              );
-                            },
-                          ),
-                        ],
+                      child: Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: Column(
+                          children: [
+                            ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: widget.items.length,
+                              itemBuilder: (context, index) {
+                                return Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Product : ',
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.pink),
+                                        ),
+                                        Text('${widget.items[index]}'),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 7,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Description  : ',
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.pink),
+                                        ),
+                                      ],
+                                    ),
+                                    Text(
+                                      '${widget.desc[index]}',
+                                      softWrap: true,
+                                    ),
+                                    SizedBox(
+                                      height: 7,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Expiry  : ',
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.pink),
+                                        ),
+                                        Text('${widget.expiry[index]}'),
+                                      ],
+                                    ),
+                                    Divider(),
+                                    SizedBox(
+                                      height: 15,
+                                    ),
+                                  ],
+                                );
+                              },
+                            ),
+                          ],
+                        ),
                       ))),
               SizedBox(
                 height: 15,

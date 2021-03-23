@@ -55,22 +55,6 @@ class _DetailsPageState extends State<DetailsPage> {
                           Row(
                             children: [
                               Text(
-                                "City : ",
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.pink),
-                              ),
-                              Text(
-                                  "${widget.snapshot.data.docs[widget.index]['city']}"),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 7,
-                          ),
-                          Row(
-                            children: [
-                              Text(
                                 "Donating : ",
                                 style: TextStyle(
                                     fontSize: 16,
@@ -116,10 +100,22 @@ class _DetailsPageState extends State<DetailsPage> {
                           SizedBox(
                             height: 7,
                           ),
-                          // Text(
-                          //   'Donor Address : ${widget.donorAddress}',
-                          //   softWrap: true,
-                          // ),
+                          Row(
+                            children: [
+                              Text(
+                                "City : ",
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.pink),
+                              ),
+                              Text(
+                                  "${widget.snapshot.data.docs[widget.index]['city']}"),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 7,
+                          ),
                           Row(
                             children: [
                               Text(
@@ -224,8 +220,7 @@ class _DetailsPageState extends State<DetailsPage> {
                   RaisedButton(
                     color: Colors.amber,
                     onPressed: () async {
-                      var url =
-                          'sms:+91${widget.snapshot.data.docs[widget.index]['donorNumber']}';
+                      var url = 'sms:+91';
                       if (await canLaunch(url)) {
                         await launch(url);
                       } else {
@@ -247,7 +242,30 @@ class _DetailsPageState extends State<DetailsPage> {
                         ),
                       ],
                     ),
-                  )
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  RaisedButton(
+                    color: Colors.green,
+                    onPressed: () async {
+                      var url =
+                          'https://api.whatsapp.com/send/?phone=91${widget.snapshot.data.docs[widget.index]['donorNumber']}';
+                      if (await canLaunch(url)) {
+                        await launch(url);
+                      } else {
+                        Fluttertoast.showToast(msg: 'Try Again Later!!');
+                      }
+                    },
+                    child: Row(
+                      children: [
+                        Text(
+                          'Whatsapp',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               )
             ],
@@ -257,3 +275,5 @@ class _DetailsPageState extends State<DetailsPage> {
     );
   }
 }
+
+//
