@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_signin_button/button_view.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:solution_challenge_2021/signin.dart';
+import 'package:solution_challenge_2021/widgets.dart';
 
 import 'main.dart';
 
@@ -38,57 +40,9 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Image.asset('assets/logim.png'),
               SizedBox(height: 50),
-              _signInButton(),
+              CustomSignInButton(),
             ],
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget _signInButton() {
-    return OutlineButton(
-      splashColor: Colors.grey,
-      onPressed: () {
-        Fluttertoast.showToast(
-          msg: "Please wait until we log you in",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-        );
-        signInWithGoogle().then((result) {
-          print(name);
-          if (result != null) {
-            Navigator.pushAndRemoveUntil<dynamic>(
-              context,
-              MaterialPageRoute<dynamic>(
-                builder: (BuildContext context) => MyHomePage(),
-              ),
-              (route) => false,
-            );
-          }
-        });
-      },
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
-      highlightElevation: 0,
-      borderSide: BorderSide(color: Colors.grey),
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Image(image: AssetImage("assets/google.png"), height: 35.0),
-            Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: Text(
-                'Sign in with Google',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.grey,
-                ),
-              ),
-            )
-          ],
         ),
       ),
     );
