@@ -79,6 +79,7 @@ class _ProfilePageState extends State<ProfilePage> {
             SizedBox(
               height: 10,
             ),
+            Text(_mobileNumber),
             Text(
               email,
               style: TextStyle(fontSize: 25),
