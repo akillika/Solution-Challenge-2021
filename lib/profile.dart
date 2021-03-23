@@ -15,37 +15,37 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   @override
-  // void initState() {
-  //   super.initState();
-  //   MobileNumber.listenPhonePermission((isPermissionGranted) {
-  //     if (isPermissionGranted) {
-  //       initMobileNumberState();
-  //     } else {
-  //       initMobileNumberState();
-  //     }
-  //   });
-  //
-  //   initMobileNumberState();
-  // }
-  //
-  // Future<void> initMobileNumberState() async {
-  //   if (!await MobileNumber.hasPhonePermission) {
-  //     await MobileNumber.requestPhonePermission;
-  //     return;
-  //   }
-  //   String mobileNumber = '';
-  //   try {
-  //     mobileNumber = await MobileNumber.mobileNumber;
-  //     _mobileNumber = mobileNumber;
-  //   } on PlatformException catch (e) {
-  //     debugPrint("Failed to get mobile number because of '${e.message}'");
-  //   }
-  //   if (!mounted) return;
-  //
-  //   setState(() {
-  //     _mobileNumber = mobileNumber.substring(2);
-  //   });
-  // }
+  void initState() {
+    super.initState();
+    MobileNumber.listenPhonePermission((isPermissionGranted) {
+      if (isPermissionGranted) {
+        initMobileNumberState();
+      } else {
+        initMobileNumberState();
+      }
+    });
+
+    initMobileNumberState();
+  }
+
+  Future<void> initMobileNumberState() async {
+    if (!await MobileNumber.hasPhonePermission) {
+      await MobileNumber.requestPhonePermission;
+      return;
+    }
+    String mobileNumber = '';
+    try {
+      mobileNumber = await MobileNumber.mobileNumber;
+      _mobileNumber = mobileNumber;
+    } on PlatformException catch (e) {
+      debugPrint("Failed to get mobile number because of '${e.message}'");
+    }
+    if (!mounted) return;
+
+    setState(() {
+      _mobileNumber = mobileNumber.substring(2);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
