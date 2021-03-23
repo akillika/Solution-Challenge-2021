@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:solution_challenge_2021/category.dart';
@@ -54,10 +55,16 @@ class CustomDrawer extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Category(
-                          type: 'Donate',
-                        )));
+                if (number != null) {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => Category(
+                            type: 'Donate',
+                          )));
+                } else {
+                  Fluttertoast.showToast(
+                      msg:
+                          "Please Provide your Mobile Number by Visiting the Profile Page");
+                }
               },
               child: Text(
                 'Donate',
@@ -74,10 +81,16 @@ class CustomDrawer extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Category(
-                          type: 'Request Donation',
-                        )));
+                if (number != null) {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => Category(
+                            type: 'Request Donation',
+                          )));
+                } else {
+                  Fluttertoast.showToast(
+                      msg:
+                          "Please Provide your Mobile Number by Visiting the Profile Page");
+                }
               },
               child: Text(
                 'Request Donation',
@@ -198,6 +211,8 @@ class CustomSignInButton extends StatefulWidget {
 }
 
 class _CustomSignInButtonState extends State<CustomSignInButton> {
+  get _mobileNumber => null;
+
   @override
   Widget build(BuildContext context) {
     return OutlineButton(
@@ -211,6 +226,10 @@ class _CustomSignInButtonState extends State<CustomSignInButton> {
         signInWithGoogle().then((result) {
           print(name);
           if (result != null) {
+            FirebaseFirestore.instance
+                .collection('Users')
+                .doc(uid)
+                .set({"Email": email}, SetOptions(merge: true));
             Navigator.pushAndRemoveUntil<dynamic>(
               context,
               MaterialPageRoute<dynamic>(

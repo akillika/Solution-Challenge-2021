@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:solution_challenge_2021/Pages/donationsTab.dart';
 import 'package:solution_challenge_2021/Pages/requestsTab.dart';
 import 'package:solution_challenge_2021/postnew.dart';
@@ -17,6 +19,12 @@ void main() async {
 }
 
 bool signed;
+DocumentSnapshot check;
+var number;
+getNumber() async {
+  check = await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+  number = check.data()['Mobile'];
+}
 
 class MyApp extends StatefulWidget {
   @override
@@ -48,6 +56,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    getNumber();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -84,11 +99,17 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           floatingActionButton: new FloatingActionButton(
             backgroundColor: Colors.pink,
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) => Postnew()));
+            onPressed: () async {
+              if (number != null) {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => Postnew()));
+              } else {
+                Fluttertoast.showToast(
+                    msg:
+                        "Please Provide your Mobile Number by Visiting the Profile Page");
+              }
             },
             tooltip: 'Post',
             child: new Icon(Icons.add),
