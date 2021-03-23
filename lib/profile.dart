@@ -28,6 +28,8 @@ class _ProfilePageState extends State<ProfilePage> {
     initMobileNumberState();
   }
 
+
+
   Future<void> initMobileNumberState() async {
     if (!await MobileNumber.hasPhonePermission) {
       await MobileNumber.requestPhonePermission;
@@ -79,7 +81,10 @@ class _ProfilePageState extends State<ProfilePage> {
             SizedBox(
               height: 10,
             ),
-            Text(_mobileNumber),
+            Text(
+              _mobileNumber,
+              style: TextStyle(fontSize: 25),
+            ),
             Text(
               email,
               style: TextStyle(fontSize: 25),
