@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mobile_number/mobile_number.dart';
 import 'package:solution_challenge_2021/signin.dart';
+import 'package:solution_challenge_2021/thankyou.dart';
 import 'package:solution_challenge_2021/widgets.dart';
-import 'login.dart';
 import 'main.dart';
 
 String _mobileNumber = '';
@@ -72,14 +72,14 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             CircleAvatar(
               radius: 70.0,
-              backgroundImage: NetworkImage(googleSignIn.currentUser.photoUrl),
+              backgroundImage: NetworkImage(imageUrl),
               backgroundColor: Colors.transparent,
             ),
             SizedBox(
               height: 30,
             ),
             Text(
-              googleSignIn.currentUser.displayName,
+              name,
               style: TextStyle(fontSize: 40),
               textAlign: TextAlign.center,
             ),
@@ -91,7 +91,7 @@ class _ProfilePageState extends State<ProfilePage> {
               style: TextStyle(fontSize: 25),
             ),
             Text(
-              googleSignIn.currentUser.email,
+              email,
               style: TextStyle(fontSize: 25),
             ),
             SizedBox(
@@ -106,7 +106,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       Navigator.pushAndRemoveUntil<dynamic>(
                         context,
                         MaterialPageRoute<dynamic>(
-                          builder: (BuildContext context) => LoginPage(),
+                          builder: (BuildContext context) => Thankyou(),
                         ),
                         (route) => false,
                       );

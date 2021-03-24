@@ -2,10 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:solution_challenge_2021/category.dart';
-import 'package:solution_challenge_2021/login.dart';
 import 'package:solution_challenge_2021/main.dart';
 import 'package:solution_challenge_2021/profile.dart';
 import 'package:solution_challenge_2021/signin.dart';
+import 'package:solution_challenge_2021/thankyou.dart';
 
 class CustomDrawer extends StatelessWidget {
   @override
@@ -123,7 +123,7 @@ class CustomDrawer extends StatelessWidget {
                   Navigator.pushAndRemoveUntil<dynamic>(
                     context,
                     MaterialPageRoute<dynamic>(
-                      builder: (BuildContext context) => LoginPage(),
+                      builder: (BuildContext context) => Thankyou(),
                     ),
                     (route) => false,
                   );

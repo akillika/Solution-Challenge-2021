@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:solution_challenge_2021/Pages/donationsTab.dart';
 import 'package:solution_challenge_2021/Pages/requestsTab.dart';
 import 'package:solution_challenge_2021/postnew.dart';
@@ -13,16 +15,14 @@ import 'package:firebase_core/firebase_core.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  signed = await googleSignIn.isSignedIn();
   runApp(MyApp());
 }
 
-bool signed;
 DocumentSnapshot check;
 var number;
 getNumber() async {
   check = await FirebaseFirestore.instance.collection('Users').doc(uid).get();
-  number = check.data()['Mobile'];
+  if (check.data() != null) number = check.data()['Mobile'];
 }
 
 class MyApp extends StatefulWidget {
