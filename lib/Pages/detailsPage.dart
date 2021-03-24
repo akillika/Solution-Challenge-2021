@@ -3,6 +3,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:solution_challenge_2021/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../main.dart';
+
 class DetailsPage extends StatefulWidget {
   final AsyncSnapshot snapshot;
   final int index;
@@ -14,13 +16,24 @@ class DetailsPage extends StatefulWidget {
 
 class _DetailsPageState extends State<DetailsPage> {
   @override
+  void initState() {
+    // TODO: implement initState
+    if (number == null) {
+      Fluttertoast.showToast(
+          msg:
+              "Please Provide your Mobile Number by Visiting the Profile Page");
+    }
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Easy Donate'),
         centerTitle: true,
         backgroundColor: Colors.pink,
-        actions: [AccountButton()],
       ),
       body: Padding(
         padding: EdgeInsets.all(20.0),
@@ -119,22 +132,6 @@ class _DetailsPageState extends State<DetailsPage> {
                           Row(
                             children: [
                               Text(
-                                "Donor Contact Number : ",
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.pink),
-                              ),
-                              Text(
-                                  "${widget.snapshot.data.docs[widget.index]['donorNumber']}"),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 7,
-                          ),
-                          Row(
-                            children: [
-                              Text(
                                 "Description : ",
                                 style: TextStyle(
                                     fontSize: 16,
@@ -184,91 +181,92 @@ class _DetailsPageState extends State<DetailsPage> {
                       ),
                     )),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  RaisedButton(
-                    color: Colors.green,
-                    onPressed: () async {
-                      var url =
-                          'tel:+91${widget.snapshot.data.docs[widget.index]['donorNumber']}';
-                      if (await canLaunch(url)) {
-                        await launch(url);
-                      } else {
-                        Fluttertoast.showToast(msg: 'Try Again Later!!');
-                      }
-                    },
-                    child: Row(
+              number != null
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(
-                          Icons.call,
-                          color: Colors.white,
+                        RaisedButton(
+                          color: Colors.green,
+                          onPressed: () async {
+                            var url =
+                                'tel:+91${widget.snapshot.data.docs[widget.index]['donorNumber']}';
+                            if (await canLaunch(url)) {
+                              await launch(url);
+                            } else {
+                              Fluttertoast.showToast(msg: 'Try Again Later!!');
+                            }
+                          },
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.call,
+                                color: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                'Call',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ],
+                          ),
                         ),
                         SizedBox(
-                          width: 5,
+                          width: 10,
                         ),
-                        Text(
-                          'Call',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  RaisedButton(
-                    color: Colors.amber,
-                    onPressed: () async {
-                      var url =
-                          'sms:+91${widget.snapshot.data.docs[widget.index]['donorNumber']}';
-                      if (await canLaunch(url)) {
-                        await launch(url);
-                      } else {
-                        Fluttertoast.showToast(msg: 'Try Again Later!!');
-                      }
-                    },
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.message,
-                          color: Colors.white,
+                        RaisedButton(
+                          color: Colors.amber,
+                          onPressed: () async {
+                            var url = 'sms:+91';
+                            if (await canLaunch(url)) {
+                              await launch(url);
+                            } else {
+                              Fluttertoast.showToast(msg: 'Try Again Later!!');
+                            }
+                          },
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.message,
+                                color: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                'Message',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ],
+                          ),
                         ),
                         SizedBox(
-                          width: 5,
+                          width: 10,
                         ),
-                        Text(
-                          'Message',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  RaisedButton(
-                    color: Colors.green,
-                    onPressed: () async {
-                      var url =
-                          'https://api.whatsapp.com/send/?phone=91${widget.snapshot.data.docs[widget.index]['donorNumber']}';
-                      if (await canLaunch(url)) {
-                        await launch(url);
-                      } else {
-                        Fluttertoast.showToast(msg: 'Try Again Later!!');
-                      }
-                    },
-                    child: Row(
-                      children: [
-                        Text(
-                          'Whatsapp',
-                          style: TextStyle(color: Colors.white),
+                        RaisedButton(
+                          color: Colors.green,
+                          onPressed: () async {
+                            var url =
+                                'https://api.whatsapp.com/send/?phone=91${widget.snapshot.data.docs[widget.index]['donorNumber']}';
+                            if (await canLaunch(url)) {
+                              await launch(url);
+                            } else {
+                              Fluttertoast.showToast(msg: 'Try Again Later!!');
+                            }
+                          },
+                          child: Row(
+                            children: [
+                              Text(
+                                'Whatsapp',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
-                    ),
-                  ),
-                ],
-              )
+                    )
+                  : Container(),
             ],
           ),
         ),

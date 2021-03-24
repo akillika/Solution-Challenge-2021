@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -5,6 +6,7 @@ import 'package:mobile_number/mobile_number.dart';
 import 'package:solution_challenge_2021/signin.dart';
 import 'package:solution_challenge_2021/widgets.dart';
 import 'login.dart';
+import 'main.dart';
 
 String _mobileNumber = '';
 
@@ -28,7 +30,7 @@ class _ProfilePageState extends State<ProfilePage> {
     initMobileNumberState();
   }
 
- Future<void> initMobileNumberState() async {
+  Future<void> initMobileNumberState() async {
     if (!await MobileNumber.hasPhonePermission) {
       await MobileNumber.requestPhonePermission;
       return;
@@ -45,6 +47,10 @@ class _ProfilePageState extends State<ProfilePage> {
     setState(() {
       _mobileNumber = mobileNumber.substring(2);
     });
+    FirebaseFirestore.instance.collection('Users').doc(uid).set({
+      "Mobile": _mobileNumber,
+    }, SetOptions(merge: true));
+    getNumber();
   }
 
   @override
@@ -66,15 +72,16 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             CircleAvatar(
               radius: 70.0,
-              backgroundImage: NetworkImage(imageUrl),
+              backgroundImage: NetworkImage(googleSignIn.currentUser.photoUrl),
               backgroundColor: Colors.transparent,
             ),
             SizedBox(
               height: 30,
             ),
             Text(
-              name,
+              googleSignIn.currentUser.displayName,
               style: TextStyle(fontSize: 40),
+              textAlign: TextAlign.center,
             ),
             SizedBox(
               height: 10,
@@ -84,7 +91,7 @@ class _ProfilePageState extends State<ProfilePage> {
               style: TextStyle(fontSize: 25),
             ),
             Text(
-              email,
+              googleSignIn.currentUser.email,
               style: TextStyle(fontSize: 25),
             ),
             SizedBox(
