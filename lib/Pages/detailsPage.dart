@@ -220,7 +220,8 @@ class _DetailsPageState extends State<DetailsPage> {
                   RaisedButton(
                     color: Colors.amber,
                     onPressed: () async {
-                      var url = 'sms:+91';
+                      var url =
+                          'sms:+91${widget.snapshot.data.docs[widget.index]['donorNumber']}';
                       if (await canLaunch(url)) {
                         await launch(url);
                       } else {
