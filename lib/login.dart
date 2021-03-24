@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_signin_button/button_view.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:solution_challenge_2021/signin.dart';
 import 'package:solution_challenge_2021/widgets.dart';
 
-import 'main.dart';
 
 class LoginPage extends StatefulWidget {
   @override

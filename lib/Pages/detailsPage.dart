@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:solution_challenge_2021/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../main.dart';
@@ -218,7 +217,8 @@ class _DetailsPageState extends State<DetailsPage> {
                         RaisedButton(
                           color: Colors.amber,
                           onPressed: () async {
-                            var url = 'sms:+91';
+                            var url =
+                                'sms:+91${widget.snapshot.data.docs[widget.index]['donorNumber']}';
                             if (await canLaunch(url)) {
                               await launch(url);
                             } else {
