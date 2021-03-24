@@ -28,9 +28,7 @@ class _ProfilePageState extends State<ProfilePage> {
     initMobileNumberState();
   }
 
-
-
-  Future<void> initMobileNumberState() async {
+ Future<void> initMobileNumberState() async {
     if (!await MobileNumber.hasPhonePermission) {
       await MobileNumber.requestPhonePermission;
       return;
