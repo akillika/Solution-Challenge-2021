@@ -1,7 +1,9 @@
 # Easy Donate
 This app was made as a Submission for [Google Solution Challenge 2021](https://developers.google.com/community/dsc-solution-challenge). <br>
 This app built using Flutter. It fetches data from [Cloud Firestore](https://firebase.google.com/docs/firestore). <br>
-This app could potentially serve as a meeting point for the people who have essential things to donate and the people who are in need of the essentials during the times of Natural Calamities.
+This app could potentially serve as a meeting point for the people who have essential things to donate and the people who are in need of the essentials during the times of Natural Calamities.<br>
+This App is Currently Available in Play Store for Open Testing.<br>
+Click [here](https://play.google.com/store/apps/details?id=com.thedeveloperstudio.easydonate) to Download the App.
 
 ## Screenshots
 <a href="https://firebasestorage.googleapis.com/v0/b/solution-challenge-2021.appspot.com/o/Screenshots%2Fphoto_2021-03-30_16-43-48.jpg?alt=media&token=1ea1e3c1-90db-464c-a15a-426cb88e0a92"><img src = "https://firebasestorage.googleapis.com/v0/b/solution-challenge-2021.appspot.com/o/Screenshots%2Fphoto_2021-03-30_16-43-48.jpg?alt=media&token=1ea1e3c1-90db-464c-a15a-426cb88e0a92" width="300px"></a>
