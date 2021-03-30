@@ -106,7 +106,9 @@ class _DetailsPageState extends State<DetailsPage> {
                                     color: Colors.pink),
                               ),
                               Text(
-                                  "${widget.snapshot.data.docs[widget.index]['donorAddress']}"),
+                                "${widget.snapshot.data.docs[widget.index]['donorAddress']}",
+                                softWrap: true,
+                              ),
                             ],
                           ),
                           SizedBox(
@@ -138,7 +140,9 @@ class _DetailsPageState extends State<DetailsPage> {
                                     color: Colors.pink),
                               ),
                               Text(
-                                  "${widget.snapshot.data.docs[widget.index]['desc']}"),
+                                "${widget.snapshot.data.docs[widget.index]['desc']}",
+                                softWrap: true,
+                              ),
                             ],
                           ),
                           SizedBox(
